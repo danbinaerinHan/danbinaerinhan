@@ -1,11 +1,77 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>나의 첫 웹사이트</title>
-  </head>
-  <body>
-    <h1>안녕하세요!</h1>
-    <p>이곳은 나의 개인 웹사이트입니다.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Name - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; margin: 0; color: #222; }
+    .container { max-width: 780px; margin: 40px auto; background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 40px 32px 32px 32px; }
+    h1 { margin-top: 0; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px;}
+    h2 { border-bottom: 1px solid #eaeaea; padding-bottom: 6px; margin-top: 32px; color: #3954a5;}
+    ul { padding-left: 18px; }
+    .subtitle { color: #666; font-size: 1.1em; margin-bottom: 28px;}
+    .section { margin-top: 32px; }
+    .item { margin-bottom: 18px;}
+    @media (max-width: 600px) {
+      .container { padding: 16px 4vw; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Your Name</h1>
+    <div class="subtitle">PhD Student, Music Technology<br>
+      <a href="mailto:your@email.com">your@email.com</a> | GitHub: <a href="https://github.com/yourusername">yourusername</a>
+    </div>
+    
+    <div class="section">
+      <h2>Education</h2>
+      <ul>
+        <li class="item">
+          <strong>Seoul National University</strong> – PhD in Music Education, 2024–Present
+        </li>
+        <li class="item">
+          <strong>KAIST</strong> – BS in Computer Science, 2020–2024
+        </li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Prizes & Awards</h2>
+      <ul>
+        <li class="item">
+          <strong>Best Paper Award</strong> at ISMIR 2024, International Society for Music Information Retrieval
+        </li>
+        <li class="item">
+          <strong>National Scholarship</strong>, Korean Ministry of Education, 2022–2024
+        </li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Publications</h2>
+      <ul>
+        <li class="item">
+          <strong>Six Dragons Fly Again: Reviving 15th-Century Korean Court Music with Transformers and Novel Encoding</strong><br>
+          <span>Jiyoon Kim, et al., ISMIR 2024</span>
+        </li>
+        <li class="item">
+          <strong>Computational Analysis of Expressive Timing in Korean Traditional Jangdan</strong><br>
+          <span>Jiyoon Kim, et al., ICMC 2023</span>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Contact</h2>
+      <ul>
+        <li class="item">Email: <a href="mailto:your@email.com">your@email.com</a></li>
+        <li class="item">GitHub: <a href="https://github.com/yourusername">yourusername</a></li>
+        <li class="item">LinkedIn: <a href="#">(optional link)</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
 </html>
