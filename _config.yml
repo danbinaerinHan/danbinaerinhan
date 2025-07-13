@@ -1,0 +1,21 @@
+# 사이트 기본 설정
+title: "홍길동 – 음악+AI 연구자"
+description: "AI와 음악의 접점을 연구하는 개인 포트폴리오"
+
+# GitHub 관련 설정
+url: "https://danbinaerinHan.github.io"
+baseurl: "/danbinaerinhan"  # 저장소 기반 페이지일 경우 지정
+
+# 리모트 테마 설정
+remote_theme: ItsPatrq/minimal-music-project
+
+# Jekyll 플러그인 설정 (필요 시 추가)
+plugins:
+  - jekyll-feed  # RSS 피드 생성
+
+# 컬렉션 설정 (음악 앨범, 협업 등)
+collections:
+  discography:
+    output: true
+  collaborations:
+    output: true
