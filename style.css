@@ -167,6 +167,14 @@ h2 {
   font-size: 1.5rem;
 }
 
+#news h2 {
+  font-size: 1.4rem;
+}
+
+#news li {
+  font-size: 0.95rem;
+}
+
 ul {
   padding-left: 20px;
 }
