@@ -245,6 +245,22 @@ p {
 
 #cover {
   padding: 80px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cover-content {
+  flex: 1;
+}
+
+.cover-image {
+  flex: 0 1 300px;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
 }
 
 .topic-header,
