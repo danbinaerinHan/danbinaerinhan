@@ -103,6 +103,29 @@ h2 {
 
 ul { padding-left: 20px; }
 
+.social-icons {
+  margin: 8px 0 16px;
+}
+
+.social-icons .icon {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #606fc7;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: #606fc7;
+  text-decoration: none;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.social-icons .icon:hover {
+  background: #606fc7;
+  color: #fff;
+}
+
 @media (max-width: 700px) {
   .sidebar {
     position: static;
