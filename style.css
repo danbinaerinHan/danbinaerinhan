@@ -2,7 +2,7 @@ body {
   font-family: "NanumSquare", sans-serif;
   background: #F3E9DC;
   margin: 0;
-  color: #333;
+  color: #444;
   line-height: 1.6;
   letter-spacing: 0.02em;
 }
@@ -83,6 +83,14 @@ body.lang-ko .lang-en {
   transform: scale(1.2);
 }
 
+.profile-info {
+  text-align: center;
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  margin: 0 10px 20px;
+}
+
 .sidebar a {
   padding: 12px 20px;
   color: #F3E9DC;
@@ -135,7 +143,7 @@ body.lang-ko .lang-en {
 
 .keyword {
   background: #F8B259;
-  color: #C75D2C;
+  color: #F3E9DC;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 0.9rem;
