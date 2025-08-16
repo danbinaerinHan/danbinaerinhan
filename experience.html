@@ -2,23 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Experience - Your Name</title>
+  <title>Experience - Danbinaerin Han</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="education.html">Education</a>
-    <a href="experience.html">Experience</a>
-    <a href="research.html">Research</a>
-  </nav>
-  <div class="container">
-    <h1>Experience</h1>
-    <ul>
-      <li class="item"><strong>Music Technology Lab, Seoul National University</strong> – Research Assistant, 2024–Present</li>
-      <li class="item"><strong>AI Startup</strong> – Software Engineering Intern, Summer 2023</li>
-    </ul>
+<body class="lang-en">
+  <div class="lang-switch">
+    <button id="switch-ko">한국어</button>
+    <button id="switch-en">English</button>
   </div>
+  <div class="layout">
+    <nav class="sidebar">
+      <a href="index.html"><span class="lang-en">Home</span><span class="lang-ko">홈</span></a>
+      <a href="education.html"><span class="lang-en">Education</span><span class="lang-ko">학력</span></a>
+      <a href="experience.html"><span class="lang-en">Experience</span><span class="lang-ko">경험</span></a>
+      <a href="research.html"><span class="lang-en">Research</span><span class="lang-ko">연구</span></a>
+    </nav>
+    <main class="content">
+      <h1><span class="lang-en">Experience</span><span class="lang-ko">경험</span></h1>
+      <ul>
+        <li>
+          <span class="lang-en"><strong>Music Technology Lab, Seoul National University</strong> – Research Assistant, 2024–Present</span>
+          <span class="lang-ko"><strong>서울대학교 음악기술연구실</strong> – 연구조교, 2024–현재</span>
+        </li>
+        <li>
+          <span class="lang-en"><strong>AI Startup</strong> – Software Engineering Intern, Summer 2023</span>
+          <span class="lang-ko"><strong>AI 스타트업</strong> – 소프트웨어 엔지니어 인턴, 2023년 여름</span>
+        </li>
+      </ul>
+    </main>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
+

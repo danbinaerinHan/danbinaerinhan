@@ -2,23 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Research - Your Name</title>
+  <title>Research - Danbinaerin Han</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="education.html">Education</a>
-    <a href="experience.html">Experience</a>
-    <a href="research.html">Research</a>
-  </nav>
-  <div class="container">
-    <h1>Research</h1>
-    <ul>
-      <li class="item"><strong>Six Dragons Fly Again: Reviving 15th-Century Korean Court Music with Transformers and Novel Encoding</strong><br><span>Jiyoon Kim, et al., ISMIR 2024</span></li>
-      <li class="item"><strong>Computational Analysis of Expressive Timing in Korean Traditional Jangdan</strong><br><span>Jiyoon Kim, et al., ICMC 2023</span></li>
-    </ul>
+<body class="lang-en">
+  <div class="lang-switch">
+    <button id="switch-ko">한국어</button>
+    <button id="switch-en">English</button>
   </div>
+  <div class="layout">
+    <nav class="sidebar">
+      <a href="index.html"><span class="lang-en">Home</span><span class="lang-ko">홈</span></a>
+      <a href="education.html"><span class="lang-en">Education</span><span class="lang-ko">학력</span></a>
+      <a href="experience.html"><span class="lang-en">Experience</span><span class="lang-ko">경험</span></a>
+      <a href="research.html"><span class="lang-en">Research</span><span class="lang-ko">연구</span></a>
+    </nav>
+    <main class="content">
+      <h1><span class="lang-en">Research</span><span class="lang-ko">연구</span></h1>
+      <ul>
+        <li>
+          <span class="lang-en"><strong>Six Dragons Fly Again: Reviving 15th-Century Korean Court Music with Transformers and Novel Encoding</strong><br>Jiyoon Kim, et al., ISMIR 2024</span>
+          <span class="lang-ko"><strong>Six Dragons Fly Again: Transformers와 새로운 인코딩으로 15세기 한국 궁중음악 복원</strong><br>김지윤 외, ISMIR 2024</span>
+        </li>
+        <li>
+          <span class="lang-en"><strong>Computational Analysis of Expressive Timing in Korean Traditional Jangdan</strong><br>Jiyoon Kim, et al., ICMC 2023</span>
+          <span class="lang-ko"><strong>한국 전통 장단의 표현적 타이밍에 대한 계산적 분석</strong><br>김지윤 외, ICMC 2023</span>
+        </li>
+      </ul>
+    </main>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
+
