@@ -72,6 +72,11 @@ body {
   color: #3743a3;
 }
 
+.sidebar a.active {
+  background: #c0c6ff;
+  color: #3743a3;
+}
+
 .content {
   margin-left: 240px;
   padding: 40px;
