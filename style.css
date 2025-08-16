@@ -24,7 +24,7 @@ body.lang-ko .lang-en {
 .lang-switch a,
 .lang-switch button {
   margin-left: 8px;
-  padding: 6px 12px;
+  padding: 4px 8px;
   border: 2px solid #ffb74d;
   background: #fff;
   color: #e65100;
@@ -35,6 +35,8 @@ body.lang-ko .lang-en {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.8rem;
+  gap: 4px;
 }
 
 .lang-switch a:hover,
@@ -43,13 +45,17 @@ body.lang-ko .lang-en {
   color: #fff;
 }
 
+.lang-switch .lang-text {
+  font-size: 0.8rem;
+}
+
 .layout {
   display: flex;
 }
 
 .sidebar {
   width: 200px;
-  background: #3e2723;
+  background: #ffe0b2;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -57,7 +63,7 @@ body.lang-ko .lang-en {
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #5d4037;
+  border-right: 2px solid #ffb74d;
 }
 
 .sidebar .profile {
@@ -66,7 +72,7 @@ body.lang-ko .lang-en {
   margin: 0 auto 20px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #ffcc80;
+  border: 2px solid #ffb74d;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -80,7 +86,7 @@ body.lang-ko .lang-en {
 
 .sidebar a {
   padding: 12px 20px;
-  color: #fff3e0;
+  color: #bf360c;
   text-decoration: none;
   font-weight: 600;
   border-radius: 4px;
@@ -88,22 +94,22 @@ body.lang-ko .lang-en {
 }
 
 .sidebar a:hover {
-  background: #5d4037;
-  color: #fff;
+  background: #ffcc80;
+  color: #bf360c;
 }
 
 .sidebar a.active {
-  background: #795548;
+  background: #ffb74d;
   color: #fff;
 }
 
 .sidebar a.project-link {
   margin: 16px 0;
-  color: #2e7d32;
+  color: #e65100;
 }
 
 .sidebar a.project-link:hover {
-  color: #1b5e20;
+  color: #bf360c;
 }
 
 /* sidebar links have uniform size */
@@ -112,6 +118,11 @@ body.lang-ko .lang-en {
   margin-left: 200px;
   padding: 60px 40px 40px;
   max-width: 900px;
+}
+
+.content section + section {
+  border-top: 2px solid #ffb74d;
+  padding-top: 40px;
 }
 
 .keywords {
@@ -148,27 +159,11 @@ h2 {
   margin-top: 40px;
   color: #e65100;
   text-align: left;
-}
-
-/* section heading sizes based on importance */
-#education h2 {
-  font-size: 2rem;
-}
-
-#research h2 {
   font-size: 1.8rem;
 }
 
-#talks h2 {
-  font-size: 1.6rem;
-}
-
-#prize h2 {
-  font-size: 1.5rem;
-}
-
 #news h2 {
-  font-size: 1.4rem;
+  font-size: 2rem;
 }
 
 #news li {
@@ -320,7 +315,7 @@ p {
     flex-wrap: nowrap;
     overflow-x: auto;
     border-right: none;
-    border-bottom: 2px solid #ffcb8e;
+    border-bottom: 2px solid #ffb74d;
     padding: 10px 0;
   }
   .sidebar .profile {

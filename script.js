@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       if (!found) {
         sidebarLinks.forEach((link) => link.classList.remove("active"));
-        sidebarLinks[sections.length - 1].classList.add("active");
       }
     };
     window.addEventListener("scroll", activateSidebar);
