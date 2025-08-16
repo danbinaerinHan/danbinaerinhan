@@ -40,7 +40,7 @@ body.lang-ko .lang-en { display: none; }
 .layout { display: flex; }
 
 .sidebar {
-  width: 240px;
+  width: 200px;
   background: #fff9ef;
   height: 100vh;
   position: fixed;
@@ -89,12 +89,10 @@ body.lang-ko .lang-en { display: none; }
 
 .sidebar a.project-link {
   margin: 16px 0;
-  background: #c8e6c9;
   color: #2e7d32;
 }
 
 .sidebar a.project-link:hover {
-  background: #a5d6a7;
   color: #1b5e20;
 }
 
@@ -113,7 +111,7 @@ body.lang-ko .lang-en { display: none; }
 }
 
 .content {
-  margin-left: 240px;
+  margin-left: 200px;
   padding: 60px 40px 40px;
   max-width: 900px;
 }
@@ -253,6 +251,7 @@ p {
     width: 100%;
     height: auto;
     flex-direction: row;
+    flex-wrap: nowrap;
     overflow-x: auto;
     border-right: none;
     border-bottom: 2px solid #ffd59d;
@@ -263,6 +262,8 @@ p {
   }
   .sidebar a {
     padding: 10px 16px;
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
   .content { margin-left: 0; padding: 20px; }
 }
