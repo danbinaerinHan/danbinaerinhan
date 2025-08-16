@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
-  const sections = Array.from(sidebarLinks)
-    .map((link) => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
+    const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+    const sections = Array.from(sidebarLinks)
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
 
   if (sidebarLinks.length && sections.length) {
     const activateSidebar = () => {
@@ -44,6 +44,26 @@ document.addEventListener("DOMContentLoaded", function () {
         link.classList.add("active");
       });
     });
-    activateSidebar();
-  }
-});
+      activateSidebar();
+    }
+
+    const yearButtons = document.querySelectorAll('.year-btn');
+    const news2024 = document.getElementById('news-2024');
+    const news2025 = document.getElementById('news-2025');
+
+    if (yearButtons.length && news2024 && news2025) {
+      yearButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          yearButtons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          if (btn.dataset.year === '2024') {
+            news2024.classList.remove('hidden');
+            news2025.classList.add('hidden');
+          } else {
+            news2025.classList.remove('hidden');
+            news2024.classList.add('hidden');
+          }
+        });
+      });
+    }
+  });
