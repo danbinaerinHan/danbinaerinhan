@@ -162,7 +162,46 @@ h2 {
 ul { padding-left: 20px; }
 
 p {
-  margin: 1.2em 0;
+  margin: 1.8em 0;
+}
+
+/* research entries */
+.paper-entry {
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.paper-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.paper-authors {
+  font-style: italic;
+  font-size: 0.95em;
+}
+
+.paper-venue {
+  font-size: 0.9em;
+}
+
+.pdf-toggle {
+  margin-top: 4px;
+}
+
+.pdf-toggle summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #e65100;
+}
+
+.pdf-toggle a {
+  color: #e65100;
+  text-decoration: none;
+}
+
+.pdf-toggle a:hover {
+  text-decoration: underline;
 }
 
 #cover {
