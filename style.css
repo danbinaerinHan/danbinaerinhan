@@ -186,6 +186,21 @@ p {
   margin: 1.8em 0;
 }
 
+/* education details */
+.edu-detail {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.edu-detail a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.edu-detail a:hover {
+  text-decoration: underline;
+}
+
 /* research entries */
 .paper-entry {
   margin-bottom: 24px;
