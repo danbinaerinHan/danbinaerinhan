@@ -21,20 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
     .map(link => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
 
-  if (sidebarLinks.length && sections.length) {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          const id = entry.target.getAttribute('id');
-          const activeLink = document.querySelector('.sidebar a[href="#' + id + '"]');
-          if (entry.isIntersecting && activeLink) {
+    if (sidebarLinks.length && sections.length) {
+      const activateSidebar = () => {
+        const scrollPos = window.scrollY + window.innerHeight / 2;
+        sections.forEach((section, idx) => {
+          if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
             sidebarLinks.forEach(link => link.classList.remove('active'));
-            activeLink.classList.add('active');
+            sidebarLinks[idx].classList.add('active');
           }
         });
-      },
-      { threshold: 0.3 }
-    );
-    sections.forEach(section => observer.observe(section));
-  }
+      };
+      window.addEventListener('scroll', activateSidebar);
+      activateSidebar();
+    }
 });
