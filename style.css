@@ -179,6 +179,38 @@ h2 {
   font-size: 0.95rem;
 }
 
+#news a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.year-toggle button {
+  margin-left: 8px;
+  padding: 4px 8px;
+  border: 1px solid #D96F32;
+  background: #F3E9DC;
+  color: #D96F32;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.year-toggle button.active,
+.year-toggle button:hover {
+  background: #D96F32;
+  color: #F3E9DC;
+}
+
+.hidden {
+  display: none;
+}
+
 ul {
   padding-left: 20px;
 }
