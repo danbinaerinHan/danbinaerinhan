@@ -1,6 +1,6 @@
 body {
   font-family: 'NanumSquare', sans-serif;
-  background: #fcfbff;
+  background: #fff8e1;
   margin: 0;
   color: #333;
   line-height: 1.6;
@@ -17,9 +17,9 @@ body {
 .lang-switch a {
   margin-left: 8px;
   padding: 6px 12px;
-  border: 2px solid #a5b4fc;
+  border: 2px solid #ffb74d;
   background: #fff;
-  color: #606fc7;
+  color: #e65100;
   cursor: pointer;
   border-radius: 8px;
   font-weight: 600;
@@ -28,7 +28,7 @@ body {
 }
 
 .lang-switch a:hover {
-  background: #a5b4fc;
+  background: #ffb74d;
   color: #fff;
 }
 
@@ -36,7 +36,7 @@ body {
 
 .sidebar {
   width: 240px;
-  background: #eef1ff;
+  background: #fff0d9;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -44,7 +44,7 @@ body {
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #e0e4ff;
+  border-right: 2px solid #ffd59d;
 }
 
 .sidebar .profile {
@@ -66,20 +66,20 @@ body {
 
 .sidebar a {
   padding: 12px 20px;
-  color: #606fc7;
+  color: #e65100;
   text-decoration: none;
   font-weight: 600;
   border-radius: 4px;
 }
 
 .sidebar a:hover {
-  background: #dce1ff;
-  color: #3743a3;
+  background: #ffe0b2;
+  color: #bf360c;
 }
 
 .sidebar a.active {
-  background: #c0c6ff;
-  color: #3743a3;
+  background: #ffb74d;
+  color: #bf360c;
 }
 
 .content {
@@ -94,14 +94,14 @@ h1 {
   margin-top: 0;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #3743a3;
+  color: #bf360c;
   text-align: left;
 }
 
 h2 {
   padding-bottom: 6px;
   margin-top: 40px;
-  color: #4f5fb3;
+  color: #e65100;
   text-align: left;
 }
 
@@ -126,18 +126,18 @@ ul { padding-left: 20px; }
   display: inline-flex;
   width: 30px;
   height: 30px;
-  border: 2px solid #606fc7;
+  border: 2px solid #e65100;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-  color: #606fc7;
+  color: #e65100;
   text-decoration: none;
   margin-right: 8px;
   font-size: 14px;
 }
 
 .social-icons .icon:hover {
-  background: #606fc7;
+  background: #e65100;
   color: #fff;
 }
 
@@ -153,9 +153,9 @@ ul { padding-left: 20px; }
 .more-btn {
   margin-top: 8px;
   padding: 6px 12px;
-  border: 2px solid #606fc7;
+  border: 2px solid #e65100;
   background: #fff;
-  color: #606fc7;
+  color: #e65100;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -165,7 +165,7 @@ ul { padding-left: 20px; }
 }
 
 .more-btn:hover {
-  background: #606fc7;
+  background: #e65100;
   color: #fff;
 }
 
@@ -185,7 +185,7 @@ ul { padding-left: 20px; }
     flex-direction: row;
     overflow-x: auto;
     border-right: none;
-    border-bottom: 2px solid #e0e4ff;
+    border-bottom: 2px solid #ffd59d;
   }
   .content { margin-left: 0; padding: 20px; }
 }
