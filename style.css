@@ -82,6 +82,12 @@ body {
   color: #bf360c;
 }
 
+.sidebar a.project-link {
+  margin: 16px 0;
+  background: #ffe0b2;
+  color: #bf360c;
+}
+
 .content {
   margin-left: 240px;
   padding: 60px 40px 40px;
