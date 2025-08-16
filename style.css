@@ -1,6 +1,6 @@
 body {
   font-family: "NanumSquare", sans-serif;
-  background: #F3E9DC;
+  background: #fff;
   margin: 0;
   color: #444;
   line-height: 1.6;
@@ -125,6 +125,7 @@ body.lang-ko .lang-en {
   margin-left: 200px;
   padding: 60px 40px 40px;
   max-width: 900px;
+  background: #F3E9DC;
 }
 
 .content section + section {
