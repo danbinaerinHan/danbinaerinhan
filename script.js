@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const target = document.getElementById(btn.dataset.target);
       if (target) {
         target.classList.toggle('open');
+        btn.classList.toggle('open');
       }
     });
   });
