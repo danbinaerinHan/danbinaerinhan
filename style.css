@@ -219,15 +219,15 @@ p {
 
 .pdf-btn {
   display: inline-block;
-  margin-top: 4px;
-  padding: 4px 8px;
-  border: 2px solid #D96F32;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border: 1px solid #D96F32;
   background: #F3E9DC;
   color: #D96F32;
   border-radius: 4px;
   font-weight: 600;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }
 
 .pdf-btn:hover {
@@ -322,6 +322,14 @@ p {
 
 .more-btn.open i {
   transform: rotate(180deg);
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px 0;
+  font-size: 0.8rem;
+  color: #666;
 }
 
 @media (max-width: 700px) {
