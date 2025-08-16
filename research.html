@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="lang-en">
   <div class="lang-switch">
@@ -24,16 +25,23 @@
     </nav>
     <main class="content">
       <h1><span class="lang-en">Research</span><span class="lang-ko">연구</span></h1>
-      <ul>
-        <li>
-          <span class="lang-en"><strong>Six Dragons Fly Again: Reviving 15th-Century Korean Court Music with Transformers and Novel Encoding</strong><br>Jiyoon Kim, et al., ISMIR 2024</span>
-          <span class="lang-ko"><strong>Six Dragons Fly Again: Transformers와 새로운 인코딩으로 15세기 한국 궁중음악 복원</strong><br>김지윤 외, ISMIR 2024</span>
-        </li>
-        <li>
-          <span class="lang-en"><strong>Computational Analysis of Expressive Timing in Korean Traditional Jangdan</strong><br>Jiyoon Kim, et al., ICMC 2023</span>
-          <span class="lang-ko"><strong>한국 전통 장단의 표현적 타이밍에 대한 계산적 분석</strong><br>김지윤 외, ICMC 2023</span>
-        </li>
-      </ul>
+      <button class="more-btn" data-target="pub-list">
+        <span class="lang-en">More</span>
+        <span class="lang-ko">더보기</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="pub-list" class="more-content">
+        <ul>
+          <li>
+            <span class="lang-en"><strong>Six Dragons Fly Again: Reviving 15th-Century Korean Court Music with Transformers and Novel Encoding</strong><br>Jiyoon Kim, et al., ISMIR 2024</span>
+            <span class="lang-ko"><strong>Six Dragons Fly Again: Transformers와 새로운 인코딩으로 15세기 한국 궁중음악 복원</strong><br>김지윤 외, ISMIR 2024</span>
+          </li>
+          <li>
+            <span class="lang-en"><strong>Computational Analysis of Expressive Timing in Korean Traditional Jangdan</strong><br>Jiyoon Kim, et al., ICMC 2023</span>
+            <span class="lang-ko"><strong>한국 전통 장단의 표현적 타이밍에 대한 계산적 분석</strong><br>김지윤 외, ICMC 2023</span>
+          </li>
+        </ul>
+      </div>
     </main>
   </div>
   <script src="script.js"></script>
