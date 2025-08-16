@@ -1,6 +1,6 @@
 body {
   font-family: 'NanumSquare', sans-serif;
-  background: #fff8e1;
+  background: #fffaf0;
   margin: 0;
   color: #333;
   line-height: 1.6;
@@ -36,7 +36,7 @@ body {
 
 .sidebar {
   width: 240px;
-  background: #fff0d9;
+  background: #fff5e6;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -113,8 +113,12 @@ h2 {
 
 ul { padding-left: 20px; }
 
+p {
+  margin: 1.2em 0;
+}
+
 #cover {
-  padding: 40px 0;
+  padding: 80px 0;
 }
 
 .topic-header,
@@ -192,6 +196,13 @@ ul { padding-left: 20px; }
     overflow-x: auto;
     border-right: none;
     border-bottom: 2px solid #ffd59d;
+    padding: 10px 0;
+  }
+  .sidebar .profile {
+    display: none;
+  }
+  .sidebar a {
+    padding: 10px 16px;
   }
   .content { margin-left: 0; padding: 20px; }
 }
