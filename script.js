@@ -34,4 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
       window.addEventListener('scroll', activateSidebar);
       activateSidebar();
     }
+
+  const moreButtons = document.querySelectorAll('.more-btn');
+  moreButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (target) {
+        target.classList.toggle('open');
+      }
+    });
+  });
 });

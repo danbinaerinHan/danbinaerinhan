@@ -103,6 +103,33 @@ h2 {
 
 ul { padding-left: 20px; }
 
+.research-topic { margin-bottom: 20px; }
+
+.more-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: 2px solid #a5b4fc;
+  background: #fff;
+  color: #606fc7;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.more-btn:hover {
+  background: #a5b4fc;
+  color: #fff;
+}
+
+.more-content {
+  display: none;
+  margin-top: 10px;
+}
+
+.more-content.open {
+  display: block;
+}
+
 @media (max-width: 700px) {
   .sidebar {
     position: static;
