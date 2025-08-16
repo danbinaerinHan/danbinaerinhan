@@ -55,7 +55,7 @@ body.lang-ko .lang-en {
 
 .sidebar {
   width: 200px;
-  background: #F8B259;
+  background: #D96F32;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -63,7 +63,7 @@ body.lang-ko .lang-en {
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #D96F32;
+  border-right: 2px solid #C75D2C;
 }
 
 .sidebar .profile {
@@ -72,7 +72,6 @@ body.lang-ko .lang-en {
   margin: 0 auto 20px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #D96F32;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -86,7 +85,7 @@ body.lang-ko .lang-en {
 
 .sidebar a {
   padding: 12px 20px;
-  color: #C75D2C;
+  color: #F3E9DC;
   text-decoration: none;
   font-weight: 600;
   border-radius: 4px;
@@ -94,8 +93,8 @@ body.lang-ko .lang-en {
 }
 
 .sidebar a:hover {
-  background: #F3E9DC;
-  color: #C75D2C;
+  background: #F8B259;
+  color: #F3E9DC;
 }
 
 .sidebar a.active {
@@ -105,11 +104,11 @@ body.lang-ko .lang-en {
 
 .sidebar a.project-link {
   margin: 16px 0;
-  color: #D96F32;
+  color: #F3E9DC;
 }
 
 .sidebar a.project-link:hover {
-  color: #C75D2C;
+  color: #F3E9DC;
 }
 
 /* sidebar links have uniform size */
@@ -334,7 +333,7 @@ p {
     flex-wrap: nowrap;
     overflow-x: auto;
     border-right: none;
-    border-bottom: 2px solid #D96F32;
+    border-bottom: 2px solid #C75D2C;
     padding: 10px 0;
   }
   .sidebar .profile {
