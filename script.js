@@ -1,140 +1,4 @@
-// Language data
-const languages = {
-  en: {
-    // Menu items
-    "menu.news": "News",
-    "menu.education": "Education",
-    "menu.research": "Research",
-    "menu.talks": "Talks",
-    "menu.prize": "Prize",
-    "menu.projects": "Bittering Danbi",
-
-    // Name and keywords
-    "name": "Danbinaerin Han",
-    "keyword.music": "Korean traditional music",
-    "keyword.mir": "music information retrieval",
-    "keyword.computational": "computational musicology",
-    "keyword.ai": "music AI",
-
-    // Introduction
-    "intro.p1": "I am a Ph.D. student at the Music and Audio Computing Lab (MACLab), advised by Professors Juhan Nam and Dasaem Jeong.",
-    "intro.p1.strong1": "I am a Ph.D. student",
-    "intro.p1.strong2": "Music and Audio Computing Lab (MACLab)",
-    "intro.p2": "My research applies Music Information Retrieval (MIR) and music AI to Gugak (Korean traditional music), focusing on its unique idioms and expressive characteristics that are often overlooked in conventional analysis.",
-    "intro.p2.strong1": "Music Information Retrieval (MIR)",
-    "intro.p2.strong2": "music AI",
-    "intro.p2.strong3": "Gugak (Korean traditional music)",
-    "intro.p3": "With over 15 years of experience as a haegeum performer, I combine performance-based musical intuition with data-driven analytical methods to investigate what constitutes the \"Korean-ness\" in our music.",
-    "intro.p3.strong1": "15 years",
-    "intro.p3.strong2": "haegeum performer",
-    "intro.p4": "My work aims to illuminate the musical significance of these expressive features and to articulate the value of Korean traditional music within the broader context of contemporary global music.",
-    "intro.p4.strong1": "Korean traditional music",
-    "contact": "E-mail: naerin71@kaist.ac.kr | danbinaerin@naver.com",
-    "contact.email": "E-mail:",
-
-    // Section titles
-    "section.news": "🤗 News",
-    "section.education": "Education",
-    "section.research": "Research",
-    "section.talks": "Talks",
-    "section.prize": "Prize",
-    "section.projects": "Bittering Danbi",
-
-    // Projects
-    "projects.item1": "Project | Restoration Korean Old Music using AI, collaboration with National Gugak Center (2024)",
-    "projects.item2": "Exhibition | 『FLOW』 Producer, Sound designer (2023)",
-    "projects.detail.title": "Project Details",
-    "projects.detail.national.title": "🇰🇷 National Gugak Center Collaboration Project",
-    "projects.detail.national.desc": "Collaboration with National Gugak Center for AI-powered restoration of Korean traditional music.",
-    "projects.detail.flow.title": "🎨 『FLOW』 Exhibition",
-    "projects.detail.flow.desc": "Producer and sound designer for 『FLOW』 exhibition.",
-    "projects.detail.additional.title": "🎵 Additional Projects",
-    "projects.detail.additional.desc": "Various research and artistic activities in the field of Korean traditional music.",
-    "projects.detail.year": "Year:",
-    "projects.detail.year.2024": "2024",
-    "projects.detail.year.2023": "2023",
-    "projects.detail.role": "Role:",
-    "projects.detail.role.research": "Research & Development",
-    "projects.detail.role.producer": "Producer, Sound Designer",
-    "projects.detail.tech": "Technology:",
-    "projects.detail.tech.ai": "AI, Machine Learning, Audio Synthesis",
-    "projects.detail.theme": "Theme:",
-    "projects.detail.theme.flow": "Music and Art Flow",
-    "projects.detail.additional.ismir": "ISMIR Conference Paper Presentation: Korean Folk Song Analysis Research",
-    "projects.detail.additional.academic": "Academic Conference Presentations: Jeongganbo Notation Recognition Research",
-    "projects.detail.additional.performance": "Performance Participation: AI-Generated Korean Traditional Music",
-    "projects.more": "More",
-    "projects.less": "Less",
-    "lang.switch": "EN/KO"
-  },
-  ko: {
-    // Menu items
-    "menu.news": "소식",
-    "menu.education": "학력",
-    "menu.research": "연구",
-    "menu.talks": "발표",
-    "menu.prize": "수상",
-    "menu.projects": "씁쓸 단비",
-
-    // Name and keywords
-    "name": "한 단비내린",
-    "keyword.music": "한국 전통음악",
-    "keyword.mir": "음악정보검색",
-    "keyword.computational": "전산음악학",
-    "keyword.ai": "음악 인공지능",
-
-    // Introduction
-    "intro.p1": "카이스트 문화기술대학원 음악및오디오컴퓨팅연구실(MACLab)에서 남주한, 정다샘 교수님의 지도를 받으며 박사과정을 밟고 있습니다.",
-    "intro.p1.strong1": "카이스트 문화기술대학원",
-    "intro.p1.strong2": "음악및오디오컴퓨팅연구실(MACLab)",
-    "intro.p2": "음악정보처리(MIR) 기술과 음악 AI를 한국 전통음악(국악)에 적용하여, 기존 분석에서 간과되기 쉬운 고유한 어법과 표현적 특징을 탐구합니다.",
-    "intro.p2.strong1": "음악정보처리(MIR)",
-    "intro.p2.strong2": "음악 AI",
-    "intro.p2.strong3": "한국 전통음악(국악)",
-    "intro.p3": "15년 이상의 해금 연주 경험을 바탕으로, 연주자적 직관과 데이터 기반 분석 방법을 결합하여 한국음악의 정체성을 탐구합니다.",
-    "intro.p3.strong1": "15년",
-    "intro.p3.strong2": "해금 연주",
-    "intro.p4": "이러한 표현적 특징들의 음악적 의미를 밝히고, 현대 글로벌 음악 맥락에서 한국 전통음악의 가치를 새롭게 조명하는 연구를 수행합니다.",
-    "intro.p4.strong1": "한국 전통음악",
-    "contact": "이메일: naerin71@kaist.ac.kr | danbinaerin@naver.com",
-    "contact.email": "이메일:",
-
-    // Section titles
-    "section.news": "🤗 소식",
-    "section.education": "학력",
-    "section.research": "연구",
-    "section.talks": "발표",
-    "section.prize": "수상",
-    "section.projects": "씁쓸 단비",
-
-    // Projects
-    "projects.item1": "프로젝트 | 국립국악원 협업, AI를 활용한 한국 고음악 복원 (2024)",
-    "projects.item2": "전시 | 『FLOW』 프로듀서, 사운드 디자이너 (2023)",
-    "projects.detail.title": "프로젝트 상세 정보",
-    "projects.detail.national.title": "🇰🇷 국립국악원 협업 프로젝트",
-    "projects.detail.national.desc": "국립국악원과 협업하여 AI 기술을 활용한 한국 고음악 복원 프로젝트입니다.",
-    "projects.detail.flow.title": "🎨 『FLOW』 전시",
-    "projects.detail.flow.desc": "『FLOW』 전시의 프로듀서 및 사운드 디자이너로 참여하였습니다.",
-    "projects.detail.additional.title": "🎵 추가 프로젝트",
-    "projects.detail.additional.desc": "국악 분야에서의 다양한 연구 및 예술 활동에 참여하고 있습니다.",
-    "projects.detail.year": "기간:",
-    "projects.detail.year.2024": "2024년",
-    "projects.detail.year.2023": "2023년",
-    "projects.detail.role": "역할:",
-    "projects.detail.role.research": "연구 및 개발 참여",
-    "projects.detail.role.producer": "프로듀서, 사운드 디자이너",
-    "projects.detail.tech": "기술:",
-    "projects.detail.tech.ai": "머신러닝, 딥러닝, 음성 합성",
-    "projects.detail.theme": "주제:",
-    "projects.detail.theme.flow": "음악과 예술의 흐름",
-    "projects.detail.additional.ismir": "ISMIR 학회 논문 발표: 한국 민요 분석 연구",
-    "projects.detail.additional.academic": "학술대회 발표: 정간보 음표 인식 연구",
-    "projects.detail.additional.performance": "공연 참여: AI 생성 국악 공연",
-    "projects.more": "더보기",
-    "projects.less": "접기",
-    "lang.switch": "영/한"
-  }
-};
+// Language data is now imported from data.js
 
 // Current language
 let currentLang = 'en';
@@ -196,88 +60,136 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Menu item hover effect and click navigation
   const menuItems = document.querySelectorAll('.menu-item');
+  let isScrolling = false; // Prevent multiple scroll actions
+  let scrollTimeout; // Store timeout reference
+
   // console.log('🎯 Found menu items:', menuItems.length);
   // console.log('📋 Menu items:', Array.from(menuItems).map(item => ({
   //   text: item.textContent.trim(),
   //   section: item.getAttribute('data-section')
   // })));
 
+  const handleMenuClick = function(e) {
+    // Prevent all default behaviors
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    // Prevent multiple clicks while scrolling
+    if (isScrolling) {
+      console.log('⏳ Already scrolling, ignoring click');
+      return false;
+    }
+
+    const sectionId = this.getAttribute('data-section');
+    console.log('🎯 Menu clicked:', sectionId, 'Element:', this);
+
+    if (sectionId) {
+      const targetSection = document.getElementById(sectionId);
+
+      if (targetSection) {
+        console.log('✅ Target section found, scrolling to:', sectionId);
+
+        // Clear any existing timeout
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        isScrolling = true; // Set flag to prevent multiple actions
+
+        // Remove active and hover classes from all menu items
+        menuItems.forEach(menuItem => {
+          menuItem.classList.remove('active');
+          menuItem.classList.remove('hover');
+        });
+
+        // Add active class to clicked menu item
+        this.classList.add('active');
+        console.log('✅ Active class added to menu item');
+
+        // Smooth scroll to target section with offset for sidebar
+        const scrollToSection = () => {
+          const rect = targetSection.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetTop = scrollTop + rect.top - 80; // 80px offset for sidebar
+
+          console.log('📐 Scroll calculations:', { rectTop: rect.top, scrollTop, targetTop });
+
+          // Use scrollTo with smooth behavior for better control
+          window.scrollTo({
+            top: targetTop,
+            behavior: 'smooth'
+          });
+
+          // Reset scrolling flag after animation completes (longer timeout for safety)
+          scrollTimeout = setTimeout(() => {
+            isScrolling = false;
+            // Remove any lingering hover states after scrolling
+            menuItems.forEach(item => {
+              item.classList.remove('hover');
+            });
+            console.log('🔄 Scrolling flag reset');
+          }, 800); // Increased timeout for better safety
+        };
+
+        scrollToSection();
+        console.log('🚀 Scrolling initiated to:', sectionId);
+      } else {
+        console.error('❌ Section not found:', sectionId);
+      }
+    } else {
+      console.error('❌ No data-section attribute on clicked item');
+    }
+
+    return false; // Extra prevention
+  };
+
   menuItems.forEach((item, index) => {
     // console.log(`Menu item ${index}:`, item.textContent.trim(), 'data-section:', item.getAttribute('data-section'));
-    // Ensure cursor is pointer
+
+    // Ensure proper cursor and accessibility
     item.style.cursor = 'pointer';
+    item.setAttribute('aria-pressed', 'false');
+
+    // Hover effects - use CSS classes instead of inline styles
     item.addEventListener('mouseenter', () => {
-      item.style.color = '#F2A950';
+      if (!isScrolling && !item.classList.contains('active')) {
+        item.classList.add('hover');
+      }
     });
     item.addEventListener('mouseleave', () => {
-      item.style.color = '';
+      if (!isScrolling) {
+        item.classList.remove('hover');
+      }
     });
 
-    // Add click event for smooth scrolling
-    item.addEventListener('click', function(e) {
-      e.preventDefault(); // 기본 동작 방지
-      e.stopPropagation(); // 이벤트 버블링 방지
-      e.stopImmediatePropagation(); // 다른 이벤트 리스너 방지
+    // Click event for smooth scrolling
+    item.addEventListener('click', handleMenuClick);
 
-      const sectionId = this.getAttribute('data-section');
-      console.log('🎯 Menu clicked:', sectionId, 'Element:', this, 'Event:', e);
-
-      if (sectionId) {
-        const targetSection = document.getElementById(sectionId);
-        // console.log('📍 Target section found:', !!targetSection);
-
-        if (targetSection) {
-          console.log('✅ Target section found, scrolling to:', sectionId);
-
-          // Remove active class from all menu items
-          menuItems.forEach(menuItem => menuItem.classList.remove('active'));
-
-          // Add active class to clicked menu item
-          this.classList.add('active');
-          console.log('✅ Active class added to menu item');
-
-          // Force scroll with multiple methods for maximum compatibility
-          const scrollToPosition = () => {
-            const rect = targetSection.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const targetTop = scrollTop + rect.top - 80; // 80px offset for sidebar
-
-            console.log('📐 Scroll calculations:', { rectTop: rect.top, scrollTop, targetTop });
-
-            // Method 1: scrollIntoView
-            targetSection.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-
-            // Method 2: Backup with scrollTo
-            setTimeout(() => {
-              window.scrollTo({
-                top: targetTop,
-                behavior: 'smooth'
-              });
-              console.log('🚀 Backup scroll executed');
-            }, 100);
-          };
-
-          scrollToPosition();
-          console.log('🚀 Scrolling initiated to:', sectionId);
-        } else {
-          // console.error('❌ Section not found:', sectionId);
-        }
-      } else {
-        // console.error('❌ No data-section attribute on clicked item');
+    // Keyboard navigation support
+    item.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleMenuClick.call(this, e);
       }
     });
   });
 
   // Auto-update active menu item based on scroll position
   function updateActiveMenuOnScroll() {
+    // Skip menu updates while scrolling from menu click
+    if (isScrolling) {
+      return;
+    }
+
     const sections = ['cover', 'news', 'education', 'research', 'talks', 'prize', 'projects'];
     const scrollPosition = window.scrollY + window.innerHeight * 0.5; // 화면 중앙에서 감지
 
-    // Remove active class from all menu items
-    menuItems.forEach(item => item.classList.remove('active'));
+    // Remove active and hover classes from all menu items
+    menuItems.forEach(item => {
+      item.classList.remove('active');
+      item.classList.remove('hover');
+    });
 
     let activatedSection = null;
 
@@ -330,11 +242,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Add scroll event listener for auto-updating active menu
-  window.addEventListener('scroll', updateActiveMenuOnScroll);
-
-  // Initial call to set active menu item on page load
-  updateActiveMenuOnScroll();
+  // Throttle scroll events for better performance
+  let scrollThrottle;
+  window.addEventListener('scroll', function() {
+    if (!scrollThrottle) {
+      scrollThrottle = setTimeout(function() {
+        updateActiveMenuOnScroll();
+        scrollThrottle = null;
+      }, 50); // Throttle to 20fps
+    }
   });
 
   // Project toggle functionality
@@ -387,56 +303,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-    const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
-    const sections = Array.from(sidebarLinks)
-      .map((link) => document.querySelector(link.getAttribute("href")))
-      .filter(Boolean);
+  // Year button functionality
+  const yearButtons = document.querySelectorAll('.year-btn');
+  const news2024 = document.getElementById('news-2024');
+  const news2025 = document.getElementById('news-2025');
 
-  if (sidebarLinks.length && sections.length) {
-    const activateSidebar = () => {
-      const scrollPos = window.scrollY + window.innerHeight / 2;
-      let found = false;
-      sections.forEach((section, idx) => {
-        if (
-          !found &&
-          section.offsetTop <= scrollPos &&
-          section.offsetTop + section.offsetHeight > scrollPos
-        ) {
-          sidebarLinks.forEach((link) => link.classList.remove("active"));
-          sidebarLinks[idx].classList.add("active");
-          found = true;
+  if (yearButtons.length && news2024 && news2025) {
+    yearButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        yearButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (btn.dataset.year === '2024') {
+          news2024.classList.remove('hidden');
+          news2025.classList.add('hidden');
+        } else {
+          news2025.classList.remove('hidden');
+          news2024.classList.add('hidden');
         }
       });
-      if (!found) {
-        sidebarLinks.forEach((link) => link.classList.remove("active"));
-      }
-    };
-    window.addEventListener("scroll", activateSidebar);
-    sidebarLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        sidebarLinks.forEach((l) => l.classList.remove("active"));
-        link.classList.add("active");
-      });
     });
-      activateSidebar();
-    }
+  }
 
-    const yearButtons = document.querySelectorAll('.year-btn');
-    const news2024 = document.getElementById('news-2024');
-    const news2025 = document.getElementById('news-2025');
-
-    if (yearButtons.length && news2024 && news2025) {
-      yearButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          yearButtons.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-          if (btn.dataset.year === '2024') {
-            news2024.classList.remove('hidden');
-            news2025.classList.add('hidden');
-          } else {
-            news2025.classList.remove('hidden');
-            news2024.classList.add('hidden');
-          }
-        });
-      });
-    }
+  // Initial call to set active menu item on page load
+  updateActiveMenuOnScroll();
+});

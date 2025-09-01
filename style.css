@@ -196,14 +196,16 @@ body.lang-ko .lang-en {
   opacity: 0;
 }
 
-.menu-item:hover {
+.menu-item:hover,
+.menu-item.hover {
   opacity: 1;
   color: var(--accent-orange);
   background-color: rgba(242, 169, 80, 0.1);
   transform: translateX(8px);
 }
 
-.menu-item:hover::before {
+.menu-item:hover::before,
+.menu-item.hover::before {
   opacity: 1;
 }
 
@@ -221,13 +223,20 @@ body.lang-ko .lang-en {
 }
 
 /* Active 메뉴 아이템은 호버 효과 무효화 */
-.menu-item.active:hover {
+.menu-item.active,
+.menu-item.active:hover,
+.menu-item.active.hover {
+  opacity: 1 !important;
   color: var(--text-dark) !important;
   background-color: var(--accent-orange) !important;
+  border: 1px solid var(--dark-orange) !important;
+  box-shadow: 0 4px 12px rgba(242, 169, 80, 0.25) !important;
   transform: translateX(12px) !important;
 }
 
-.menu-item.active:hover::before {
+.menu-item.active::before,
+.menu-item.active:hover::before,
+.menu-item.active.hover::before {
   opacity: 1 !important;
 }
 
