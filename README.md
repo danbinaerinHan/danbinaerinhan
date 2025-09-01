@@ -1,4 +1,4 @@
-# 한 단비내린 (Danbinaerin Han) - 포트폴리오
+# 한 단비내린 (Danbinaerin Han)
 
 ## 🚀 빠른 시작 (Quick Start)
 
@@ -138,25 +138,5 @@ npm start      # 로컬 개발 서버 시작 (포트 8080)
 npm run deploy # GitHub Pages에 배포
 npm test       # 테스트 실행 (현재 미구현)
 ```
-
----
-
-## 📞 연락처 (Contact)
-
-- **이메일**: naerin71@kaist.ac.kr
-- **GitHub**: [@danbinaerinHan](https://github.com/danbinaerinHan)
-- **웹사이트**: [포트폴리오](https://danbinaerinhan.github.io/danbinaerinhan)
-
----
-
-## 📜 라이선스 (License)
-
-이 프로젝트는 MIT 라이선스 하에 있습니다.
-
----
-
-## 🙏 감사의 말
-
-이 포트폴리오를 방문해주셔서 감사합니다. 제 연구와 프로젝트에 관심 가져주셔서 감사드립니다!
 
 ---
