@@ -74,7 +74,7 @@ const languages = {
     "menu.research": "연구",
     "menu.talks": "발표",
     "menu.prize": "수상",
-    "menu.projects": "Bittering Danbi",
+    "menu.projects": "씁쓸 단비",
 
     // Name and keywords
     "name": "한 단비내린",
@@ -105,7 +105,7 @@ const languages = {
     "section.research": "연구",
     "section.talks": "발표",
     "section.prize": "수상",
-    "section.projects": "Bittering Danbi",
+    "section.projects": "씁쓸 단비",
 
     // Projects
     "projects.item1": "프로젝트 | 국립국악원 협업, AI를 활용한 한국 고음악 복원 (2024)",
@@ -141,68 +141,200 @@ let currentLang = 'en';
 
 // Function to update text content
 function updateLanguage(lang) {
-  console.log('=== updateLanguage called with:', lang);
+  // console.log('=== updateLanguage called with:', lang);
   currentLang = lang;
   document.body.className = lang === 'ko' ? 'lang-ko' : 'lang-en';
 
   // Update all elements with data-key attributes
   const elements = document.querySelectorAll('[data-key]');
-  console.log('Found elements with data-key:', elements.length);
+  // console.log('Found elements with data-key:', elements.length);
 
   elements.forEach((element, index) => {
     const key = element.getAttribute('data-key');
-    console.log(`Element ${index}: key="${key}"`);
+    // console.log(`Element ${index}: key="${key}"`);
 
     if (languages[lang] && languages[lang][key]) {
       const oldText = element.textContent;
       const newText = languages[lang][key];
       element.textContent = newText;
-      console.log(`Updated: "${oldText}" -> "${newText}"`);
+      // console.log(`Updated: "${oldText}" -> "${newText}"`);
     } else {
-      console.log(`No translation found for key: ${key} in language: ${lang}`);
+      // console.log(`No translation found for key: ${key} in language: ${lang}`);
     }
   });
 
   // Update lang attribute
   document.documentElement.lang = lang;
-  console.log('=== Language update completed');
+  // console.log('=== Language update completed');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log('=== DOM Content Loaded ===');
+  // console.log('=== DOM Content Loaded ===');
 
   const toggleBtn = document.getElementById("lang-toggle");
-  console.log('Toggle button element:', toggleBtn);
+  // console.log('Toggle button element:', toggleBtn);
 
   if (toggleBtn) {
-    console.log('Adding click event listener to toggle button');
+    // console.log('Adding click event listener to toggle button');
 
     toggleBtn.addEventListener("click", function (event) {
-      console.log('=== BUTTON CLICKED ===');
+      // console.log('=== BUTTON CLICKED ===');
 
       event.preventDefault(); // a 태그의 기본 동작 방지
       const newLang = currentLang === 'en' ? 'ko' : 'en';
-      console.log('New language will be:', newLang);
+      // console.log('New language will be:', newLang);
       updateLanguage(newLang);
       return false; // 추가 보험
     });
 
     // 초기 언어 설정 (첫 로드 시 영어로 설정)
-    console.log('Setting initial language to English');
+    // console.log('Setting initial language to English');
     updateLanguage('en');
   } else {
-    console.error('=== TOGGLE BUTTON NOT FOUND ===');
+    // console.error('=== TOGGLE BUTTON NOT FOUND ===');
   }
 
-  // Menu item hover effect
+  // Menu item hover effect and click navigation
   const menuItems = document.querySelectorAll('.menu-item');
-  menuItems.forEach(item => {
+  // console.log('🎯 Found menu items:', menuItems.length);
+  // console.log('📋 Menu items:', Array.from(menuItems).map(item => ({
+  //   text: item.textContent.trim(),
+  //   section: item.getAttribute('data-section')
+  // })));
+
+  menuItems.forEach((item, index) => {
+    // console.log(`Menu item ${index}:`, item.textContent.trim(), 'data-section:', item.getAttribute('data-section'));
+    // Ensure cursor is pointer
+    item.style.cursor = 'pointer';
     item.addEventListener('mouseenter', () => {
       item.style.color = '#F2A950';
     });
     item.addEventListener('mouseleave', () => {
       item.style.color = '';
     });
+
+    // Add click event for smooth scrolling
+    item.addEventListener('click', function(e) {
+      e.preventDefault(); // 기본 동작 방지
+      e.stopPropagation(); // 이벤트 버블링 방지
+      e.stopImmediatePropagation(); // 다른 이벤트 리스너 방지
+
+      const sectionId = this.getAttribute('data-section');
+      console.log('🎯 Menu clicked:', sectionId, 'Element:', this, 'Event:', e);
+
+      if (sectionId) {
+        const targetSection = document.getElementById(sectionId);
+        // console.log('📍 Target section found:', !!targetSection);
+
+        if (targetSection) {
+          console.log('✅ Target section found, scrolling to:', sectionId);
+
+          // Remove active class from all menu items
+          menuItems.forEach(menuItem => menuItem.classList.remove('active'));
+
+          // Add active class to clicked menu item
+          this.classList.add('active');
+          console.log('✅ Active class added to menu item');
+
+          // Force scroll with multiple methods for maximum compatibility
+          const scrollToPosition = () => {
+            const rect = targetSection.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const targetTop = scrollTop + rect.top - 80; // 80px offset for sidebar
+
+            console.log('📐 Scroll calculations:', { rectTop: rect.top, scrollTop, targetTop });
+
+            // Method 1: scrollIntoView
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+
+            // Method 2: Backup with scrollTo
+            setTimeout(() => {
+              window.scrollTo({
+                top: targetTop,
+                behavior: 'smooth'
+              });
+              console.log('🚀 Backup scroll executed');
+            }, 100);
+          };
+
+          scrollToPosition();
+          console.log('🚀 Scrolling initiated to:', sectionId);
+        } else {
+          // console.error('❌ Section not found:', sectionId);
+        }
+      } else {
+        // console.error('❌ No data-section attribute on clicked item');
+      }
+    });
+  });
+
+  // Auto-update active menu item based on scroll position
+  function updateActiveMenuOnScroll() {
+    const sections = ['cover', 'news', 'education', 'research', 'talks', 'prize', 'projects'];
+    const scrollPosition = window.scrollY + window.innerHeight * 0.5; // 화면 중앙에서 감지
+
+    // Remove active class from all menu items
+    menuItems.forEach(item => item.classList.remove('active'));
+
+    let activatedSection = null;
+
+    // Find the current section in view (화면 중앙이 속한 섹션 찾기)
+    for (let i = 0; i < sections.length; i++) {
+      const section = document.getElementById(sections[i]);
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        // 스크롤 위치가 섹션 범위 내에 있는지 확인
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          activatedSection = sections[i];
+
+          // Find the corresponding menu item and activate it
+          const activeMenuItem = document.querySelector(`.menu-item[data-section="${sections[i]}"]`);
+          if (activeMenuItem) {
+            activeMenuItem.classList.add('active');
+          }
+          break;
+        }
+      }
+    }
+
+    // 만약 어떤 섹션에도 속하지 않는다면, 가장 가까운 섹션을 찾음
+    if (!activatedSection) {
+      let closestSection = null;
+      let minDistance = Infinity;
+
+      for (let i = 0; i < sections.length; i++) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionCenter = sectionTop + section.offsetHeight / 2;
+          const distance = Math.abs(scrollPosition - sectionCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestSection = sections[i];
+          }
+        }
+      }
+
+      if (closestSection) {
+        const activeMenuItem = document.querySelector(`.menu-item[data-section="${closestSection}"]`);
+        if (activeMenuItem) {
+          activeMenuItem.classList.add('active');
+        }
+      }
+    }
+  }
+
+  // Add scroll event listener for auto-updating active menu
+  window.addEventListener('scroll', updateActiveMenuOnScroll);
+
+  // Initial call to set active menu item on page load
+  updateActiveMenuOnScroll();
   });
 
   // Project toggle functionality
@@ -225,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate actual content height
         if (expandedContent) {
           const contentHeight = expandedContent.scrollHeight;
-          console.log('Content height:', contentHeight);
+          // console.log('Content height:', contentHeight);
 
           // Temporarily set height to auto to get actual height
           projectExpanded.style.maxHeight = 'none';
@@ -308,4 +440,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
     }
-  });

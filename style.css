@@ -175,13 +175,60 @@ body.lang-ko .lang-en {
   font-size: 1rem;
   margin: 2px 0;
   opacity: 0.8;
-  transition: opacity 0.3s ease, color 0.3s ease;
+  transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer !important;
+  position: relative;
+  user-select: none;
 }
 
-nav .sidebar .menu-item:hover,
+.menu-item::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid var(--accent-orange);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
 .menu-item:hover {
   opacity: 1;
-  color: #F2A950 !important;
+  color: var(--accent-orange);
+  background-color: rgba(242, 169, 80, 0.1);
+  transform: translateX(8px);
+}
+
+.menu-item:hover::before {
+  opacity: 1;
+}
+
+.menu-item.active {
+  opacity: 1;
+  color: var(--text-dark);
+  background-color: var(--accent-orange);
+  border: 1px solid var(--dark-orange);
+  box-shadow: 0 4px 12px rgba(242, 169, 80, 0.25);
+  transform: translateX(12px);
+}
+
+.menu-item.active::before {
+  opacity: 1;
+}
+
+/* Active 메뉴 아이템은 호버 효과 무효화 */
+.menu-item.active:hover {
+  color: var(--text-dark) !important;
+  background-color: var(--accent-orange) !important;
+  transform: translateX(12px) !important;
+}
+
+.menu-item.active:hover::before {
+  opacity: 1 !important;
 }
 
 .project-link {
@@ -347,6 +394,18 @@ p {
 }
 
 .edu-detail a:hover {
+  text-decoration: underline;
+}
+
+/* Email links */
+.email-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.email-link:hover {
+  color: var(--accent-orange);
   text-decoration: underline;
 }
 
@@ -573,6 +632,7 @@ p {
 /* Projects Section Expandable */
 .projects-section {
   position: relative;
+  padding-bottom: 200px; /* 메뉴 스크롤 인식 위한 여백 추가 */
 }
 
 .project-content {
@@ -600,7 +660,7 @@ p {
   border-left: 4px solid var(--accent-orange);
   background: var(--primary-bg);
   border-radius: 12px;
-  margin: 15px;
+  margin: 15px 15px 100px 15px; /* 하단 여백 추가 */
 }
 
 .expanded-content h3 {
