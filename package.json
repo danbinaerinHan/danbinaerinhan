@@ -1,0 +1,27 @@
+{
+  "name": "danbinaerinhan",
+  "version": "1.0.0",
+  "description": "<!-- **danbinaerinHan/danbinaerinhan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.",
+  "main": "script.js",
+  "scripts": {
+    "start": "live-server --port=8080 --open=./",
+    "deploy": "gh-pages -d . -t -b gh-pages --nojekyll",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danbinaerinHan/danbinaerinhan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/danbinaerinHan/danbinaerinhan/issues"
+  },
+  "homepage": "https://danbinaerinhan.github.io/danbinaerinhan",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "live-server": "^1.2.2"
+  }
+}
