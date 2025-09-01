@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start": "live-server --port=8080 --open=./",
-    "deploy": "rm -rf node_modules/.cache && gh-pages -d . -t -b gh-pages --nojekyll",
+    "deploy": "gh-pages -d dist -b gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "homepage": "https://danbinaerinhan.github.io/danbinaerinhan",
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "rimraf": "^6.0.1"
   }
 }

@@ -16,12 +16,37 @@
 }
 
 body {
-  font-family: "NanumSquare", sans-serif;
+  font-family: "Noto Sans KR", "NanumSquare", sans-serif;
   background: var(--cream-bg);
   margin: 0;
   color: var(--text-secondary); /* 본문 텍스트는 부드러운 회색 */
   line-height: 1.6;
   letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+/* 제목에는 전통적인 느낌의 serif 폰트 적용 (가벼운 무게로) */
+h1, h2 {
+  font-family: "Noto Serif KR", "NanumSquare", serif;
+  font-weight: 400;
+}
+
+/* 메뉴와 네비게이션은 깨끗한 sans-serif */
+.menu-item, .sidebar a {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+}
+
+/* 키워드 태그도 serif로 전통적인 느낌 */
+.keyword {
+  font-family: "Noto Serif KR", "NanumSquare", serif;
+  font-weight: 500;
+}
+
+/* 연구 논문 제목도 serif로 학문적인 느낌 */
+.paper-title {
+  font-family: "Noto Serif KR", "NanumSquare", serif;
+  font-weight: 500;
 }
 
 body.lang-en .lang-ko {
