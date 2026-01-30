@@ -1,81 +1,29 @@
-/* ──────────────────────────────────────────────────────────────
-   🎨 색상 팔레트 및 CSS 변수 정의
-   • 한국 전통미학과 현대적 느낌의 조화
-   • 일관된 색상 시스템을 위한 CSS 커스텀 프로퍼티
-   • 유지보수성과 확장성을 고려한 색상 관리
-───────────────────────────────────────────────────────────── */
-
-/* ===== COLOR PALETTE ===== */
-/* Primary: #F5F2E8 (Hanji Beige), #3A5F3A (Muted Forest Green) */
-/* Secondary: #F2A950 (Soft Orange), #F28F38 (Deep Orange) */
-/* Neutral: #1A2528 (Deep Navy), #8B7355 (Warm Taupe), #6B7280 (Soft Gray) */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
 
 :root {
-  --primary-bg: #F5F2E8; /* 한지 느낌의 베이지톤 */
-  --primary-green: #3A5F3A; /* 차분한 포레스트 그린 */
-  --accent-orange: #F2A950; /* 부드러운 오렌지 (메인 액센트) */
-  --dark-orange: #F28F38; /* 깊은 오렌지 (호버/액티브 상태) */
-  --text-dark: #1A2528; /* 더 진한 네이비 (제목 텍스트) */
-  --text-secondary: #6B7280; /* 부드러운 회색 (본문 텍스트) */
-  --warm-brown: #8B7355; /* 따뜻한 토프 (보조 색상) */
-  --cream-bg: #FEFEFE; /* 크림색 배경 (기본 배경) */
-  --border-light: #E5E1D5; /* 연한 테두리 (섹션 구분선) */
+  --primary-bg: #fffffe; 
+  --primary-green: #9E978E; 
+  --primary-yellow: transparent;
+  --accent-orange: #D6E4E5;
+  --dark-orange: #497174;
+  --text-dark: #1A2528; /* 더 진한 네이비 */
+  --text-secondary: #5C6470; /* 부드러운 회색 */
+  --warm-brown: #ffca74; /* 따뜻한 토프 */
+  --cream-bg: #FEFEFE;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   📝 기본 문서 스타일 및 타이포그래피
-   • 한국 전통음악 연구자의 학문적이고 우아한 느낌 표현
-   • 가독성과 시각적 위계 최적화
-   • 폰트 계층 구조로 콘텐츠 중요도 시각화
-───────────────────────────────────────────────────────────── */
+html {
+  font-size: 14px;
+}
 
 body {
-  font-family: "Noto Sans KR", "NanumSquare", sans-serif;
+  font-family: "NanumSquare", sans-serif;
   background: var(--cream-bg);
   margin: 0;
   color: var(--text-secondary); /* 본문 텍스트는 부드러운 회색 */
   line-height: 1.6;
   letter-spacing: 0.02em;
-  font-weight: 400;
 }
-
-/* ──────────────────────────────────────────────────────────────
-   🔤 타이포그래피 계층 구조
-   • 콘텐츠 유형별로 적절한 폰트 선택
-   • serif와 sans-serif의 조화로 시각적 다양성 제공
-   • 전통성과 현대성의 균형
-───────────────────────────────────────────────────────────── */
-
-/* 제목에는 전통적인 느낌의 serif 폰트 적용 (가벼운 무게로) */
-h1, h2 {
-  font-family: "Noto Serif KR", "NanumSquare", serif;
-  font-weight: 400;
-}
-
-/* 메뉴와 네비게이션은 깨끗한 sans-serif */
-.menu-item, .sidebar a {
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 500;
-}
-
-/* 키워드 태그도 serif로 전통적인 느낌 */
-.keyword {
-  font-family: "Noto Serif KR", "NanumSquare", serif;
-  font-weight: 500;
-}
-
-/* 연구 논문 제목도 serif로 학문적인 느낌 */
-.paper-title {
-  font-family: "Noto Serif KR", "NanumSquare", serif;
-  font-weight: 500;
-}
-
-/* ──────────────────────────────────────────────────────────────
-   🌐 다국어 지원 스타일
-   • JavaScript로 동적 언어 전환 지원
-   • CSS 클래스 토글 방식으로 언어별 콘텐츠 표시/숨김
-   • 부드러운 사용자 경험 제공
-───────────────────────────────────────────────────────────── */
 
 body.lang-en .lang-ko {
   display: none;
@@ -83,13 +31,6 @@ body.lang-en .lang-ko {
 body.lang-ko .lang-en {
   display: none;
 }
-
-/* ──────────────────────────────────────────────────────────────
-   🔄 언어 전환 버튼
-   • 우상단 고정 배치로 언제든 접근 가능
-   • 부드러운 호버 효과와 시각적 피드백
-   • 접근성과 디자인의 균형
-───────────────────────────────────────────────────────────── */
 
 .lang-switch {
   position: fixed;
@@ -101,7 +42,7 @@ body.lang-ko .lang-en {
 .lang-switch a,
 .lang-switch button {
   margin-left: 8px;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border: 2px solid var(--accent-orange);
   background: var(--cream-bg);
   color: var(--primary-green);
@@ -112,7 +53,7 @@ body.lang-ko .lang-en {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   gap: 4px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(58, 95, 58, 0.1);
@@ -124,34 +65,24 @@ body.lang-ko .lang-en {
   color: var(--text-dark);
   border-color: var(--dark-orange);
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(242, 169, 80, 0.2);
+  box-shadow: 0 4px 8px rgba(73, 113, 116, 0.28);
 }
 
 .lang-switch .lang-text {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
-
-/* ──────────────────────────────────────────────────────────────
-   📐 메인 레이아웃 구조
-   • Flexbox 기반 반응형 레이아웃
-   • 사이드바와 메인 컨텐츠의 조화로운 배치
-   • 고정 사이드바로 일관된 네비게이션 경험
-───────────────────────────────────────────────────────────── */
 
 .layout {
   display: flex;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   📋 사이드바 디자인
-   • 고정 배치로 항상 보이는 네비게이션
-   • 한국 전통음악 연구자의 프로필 정보 표시
-   • 메뉴 아이템들의 계층적 배치와 시각적 피드백
-───────────────────────────────────────────────────────────── */
-
 .sidebar {
   width: 200px;
-  background: var(--primary-green);
+  background-color: var(--primary-green);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 12px 12px;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -159,25 +90,30 @@ body.lang-ko .lang-en {
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid var(--warm-brown);
-  box-shadow: 2px 0 8px rgba(45, 90, 61, 0.1);
 }
 
 .sidebar .profile {
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
   margin: 0 auto 20px;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
+.sidebar .profile a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .sidebar .profile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
-  transform: scale(1.2);
+  object-position: top center;
+  cursor: pointer;
+  display: block;
 }
 
 .profile-info {
@@ -186,6 +122,7 @@ body.lang-ko .lang-en {
   font-size: 0.8rem;
   line-height: 1.2;
   margin: 0 10px 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
 }
 
 .sidebar a {
@@ -200,6 +137,7 @@ body.lang-ko .lang-en {
   position: relative;
   cursor: pointer;
   margin: 2px 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .sidebar a::before {
@@ -219,7 +157,7 @@ body.lang-ko .lang-en {
 
 .sidebar a:hover {
   background: var(--primary-yellow);
-  color: var(--text-dark);
+  color: #fff;
   border-color: var(--accent-orange);
   transform: translateX(8px);
   box-shadow: 0 4px 12px rgba(242, 169, 80, 0.15);
@@ -230,10 +168,10 @@ body.lang-ko .lang-en {
 }
 
 .sidebar a.active {
-  background: var(--accent-orange);
-  color: var(--text-dark);
+  background: #D6E4E5;
+  color: #497174;
   border-color: var(--dark-orange);
-  box-shadow: 0 4px 12px rgba(242, 169, 80, 0.25);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
   transform: translateX(12px);
 }
 
@@ -249,75 +187,20 @@ body.lang-ko .lang-en {
   font-size: 1rem;
   margin: 2px 0;
   opacity: 0.8;
-  transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer !important;
-  position: relative;
-  user-select: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
-.menu-item::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-left: 4px solid var(--accent-orange);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  transition: all 0.3s ease;
-  opacity: 0;
-}
-
-.menu-item:hover,
-.menu-item.hover {
+nav .sidebar .menu-item:hover,
+.menu-item:hover {
   opacity: 1;
-  color: var(--accent-orange);
-  background-color: rgba(242, 169, 80, 0.1);
-  transform: translateX(8px);
-}
-
-.menu-item:hover::before,
-.menu-item.hover::before {
-  opacity: 1;
-}
-
-.menu-item.active {
-  opacity: 1;
-  color: var(--text-dark);
-  background-color: var(--accent-orange);
-  border: 1px solid var(--dark-orange);
-  box-shadow: 0 4px 12px rgba(242, 169, 80, 0.25);
-  transform: translateX(12px);
-}
-
-.menu-item.active::before {
-  opacity: 1;
-}
-
-/* Active 메뉴 아이템은 호버 효과 무효화 */
-.menu-item.active,
-.menu-item.active:hover,
-.menu-item.active.hover {
-  opacity: 1 !important;
-  color: var(--text-dark) !important;
-  background-color: var(--accent-orange) !important;
-  border: 1px solid var(--dark-orange) !important;
-  box-shadow: 0 4px 12px rgba(242, 169, 80, 0.25) !important;
-  transform: translateX(12px) !important;
-}
-
-.menu-item.active::before,
-.menu-item.active:hover::before,
-.menu-item.active.hover::before {
-  opacity: 1 !important;
+  color: #F2A950 !important;
 }
 
 .project-link {
   margin: 16px 0;
   color: var(--primary-yellow);
-  background: rgba(242, 211, 56, 0.1);
+  background: transparent;
   border: 1px solid var(--primary-yellow);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -338,13 +221,6 @@ body.lang-ko .lang-en {
 }
 
 /* sidebar links have uniform size */
-
-/* ──────────────────────────────────────────────────────────────
-   📄 메인 컨텐츠 영역
-   • 사이드바와의 적절한 간격으로 콘텐츠 표시
-   • 한지 느낌의 베이지톤 배경으로 전통적 느낌
-   • 넓은 여백으로 가독성 확보
-───────────────────────────────────────────────────────────── */
 
 .content {
   margin-left: 200px;
@@ -375,13 +251,6 @@ body.lang-ko .lang-en {
   opacity: 0.6;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   🏷️ 키워드 태그 디자인
-   • 연구 분야를 시각적으로 강조
-   • Flex 레이아웃으로 반응형 배치
-   • 부드러운 그림자와 색상으로 현대적 느낌
-───────────────────────────────────────────────────────────── */
-
 .keywords {
   margin-top: 4px;
   margin-bottom: 16px;
@@ -393,20 +262,13 @@ body.lang-ko .lang-en {
 .keyword {
   background: var(--accent-orange);
   color: var(--text-dark);
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 12px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   border: 2px solid var(--dark-orange);
   box-shadow: 0 2px 4px rgba(242, 143, 56, 0.2);
 }
-
-/* ──────────────────────────────────────────────────────────────
-   📝 섹션 구조 및 제목 스타일
-   • 콘텐츠의 시각적 위계 설정
-   • 한지 느낌의 디자인과 조화되는 스타일
-   • 텍스트 그림자로 깊이감 표현
-───────────────────────────────────────────────────────────── */
 
 .section {
   margin-bottom: 40px;
@@ -420,6 +282,7 @@ h1 {
   text-align: left;
   text-shadow: 0 1px 2px rgba(26, 37, 40, 0.1);
   letter-spacing: -0.02em;
+  font-family: "Merriweather", "NanumSquare", serif;
 }
 
 h2 {
@@ -429,7 +292,7 @@ h2 {
   text-align: left;
   font-size: 1.8rem;
   font-weight: 600;
-  border-bottom: 2px solid var(--accent-orange);
+  border-bottom: 2px solid #F28F38;
   display: inline-block;
   letter-spacing: -0.01em;
 }
@@ -501,25 +364,6 @@ p {
   text-decoration: underline;
 }
 
-/* Email links */
-.email-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.email-link:hover {
-  color: var(--accent-orange);
-  text-decoration: underline;
-}
-
-/* ──────────────────────────────────────────────────────────────
-   📚 연구 논문 스타일
-   • 학술적 콘텐츠의 체계적인 표시
-   • 저자, 학회, 연도 정보의 명확한 구분
-   • 가독성과 전문성 강조
-───────────────────────────────────────────────────────────── */
-
 /* research entries */
 .paper-entry {
   margin-bottom: 24px;
@@ -563,7 +407,7 @@ p {
   display: inline-block;
   margin-left: 6px;
   padding: 2px 6px;
-  border: 2px solid var(--primary-green);
+  border: 2px solid #D6E4E5;
   background: var(--primary-yellow);
   color: var(--text-dark);
   border-radius: 6px;
@@ -575,7 +419,7 @@ p {
 
 .pdf-btn:hover {
   background: var(--accent-orange);
-  border-color: var(--dark-orange);
+  border-color: #D6E4E5;
   color: var(--text-dark);
   transform: scale(1.05);
   box-shadow: 0 2px 4px rgba(242, 169, 80, 0.2);
@@ -595,10 +439,84 @@ p {
 }
 
 .cover-image {
-  flex: 0 1 300px;
-  max-width: 300px;
   width: 100%;
   height: auto;
+}
+
+.cover-media {
+  flex: 0 1 280px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.gallery-cta {
+  font-weight: 600;
+  color: #497174;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.gallery-cta:hover {
+  color: #1A2528;
+  text-decoration: underline;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.gallery-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gallery-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.gallery-card-title {
+  margin-top: 8px;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+}
+
+.gallery-detail {
+  max-width: 760px;
+}
+
+.gallery-detail img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+.gallery-back {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #497174;
+  font-weight: 600;
+}
+
+.gallery-back:hover {
+  text-decoration: underline;
 }
 
 .topic-header,
@@ -616,44 +534,21 @@ p {
   display: inline-flex;
   width: 32px;
   height: 32px;
-  border: 2px solid var(--primary-green);
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-  color: var(--primary-green);
+  color: #497174;
   text-decoration: none;
   margin-right: 10px;
   font-size: 14px;
   transition: all 0.3s ease;
-  background: rgba(58, 95, 58, 0.08);
   position: relative;
-  overflow: hidden;
-}
-
-.social-icons .icon::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--primary-yellow);
-  border-radius: 50%;
-  transform: scale(0);
-  transition: transform 0.3s ease;
-  z-index: -1;
 }
 
 .social-icons .icon:hover {
-  background: var(--primary-green);
-  color: var(--cream-bg);
-  transform: scale(1.15) rotate(5deg);
-  box-shadow: 0 6px 16px rgba(58, 95, 58, 0.4);
-  border-color: var(--accent-orange);
-}
-
-.social-icons .icon:hover::before {
-  transform: scale(1);
+  color: #D6E4E5;
+  transform: none;
+  box-shadow: none;
 }
 
 .more-content {
@@ -680,6 +575,19 @@ p {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+
+.gallery-cta-btn {
+  border-color: #F28F38;
+  color: #F28F38;
+  background: rgba(242, 143, 56, 0.08);
+  margin-bottom: 16px;
+}
+
+.gallery-cta-btn:hover {
+  border-color: #F28F38;
+  background: #F28F38;
+  color: #fff;
 }
 
 .more-btn::before {
@@ -732,6 +640,13 @@ p {
   box-shadow: 0 4px 8px rgba(191, 131, 78, 0.3);
 }
 
+.footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 16px 0 24px;
+}
+
 .more-btn i {
   transition: transform 0.3s;
 }
@@ -740,17 +655,9 @@ p {
   transform: rotate(180deg);
 }
 
-/* ──────────────────────────────────────────────────────────────
-   🎨 프로젝트 섹션 확장 기능
-   • JavaScript와 연동된 동적 콘텐츠 표시
-   • 부드러운 애니메이션으로 사용자 경험 향상
-   • 한지 느낌의 배경으로 전통적 디자인 유지
-───────────────────────────────────────────────────────────── */
-
 /* Projects Section Expandable */
 .projects-section {
   position: relative;
-  padding-bottom: 200px; /* 메뉴 스크롤 인식 위한 여백 추가 */
 }
 
 .project-content {
@@ -778,7 +685,7 @@ p {
   border-left: 4px solid var(--accent-orange);
   background: var(--primary-bg);
   border-radius: 12px;
-  margin: 15px 15px 100px 15px; /* 하단 여백 추가 */
+  margin: 15px;
 }
 
 .expanded-content h3 {
@@ -828,6 +735,22 @@ p {
   color: var(--text-dark);
 }
 
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar {
     display: none; /* 모바일에서 사이드바 완전히 숨김 */
@@ -839,14 +762,7 @@ p {
     width: 100%;
   }
 
-  /* ──────────────────────────────────────────────────────────────
-   📱 반응형 디자인 (모바일 최적화)
-   • 768px 이하에서 데스크톱 레이아웃 변경
-   • 사이드바 숨김으로 공간 효율화
-   • 터치 친화적 인터페이스 고려
-───────────────────────────────────────────────────────────── */
-
-/* 모바일에서 모든 메뉴 관련 요소 숨김 */
+  /* 모바일에서 모든 메뉴 관련 요소 숨김 */
   .mobile-menu-btn,
   .sidebar-overlay {
     display: none !important;

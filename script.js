@@ -1,381 +1,219 @@
-// ──────────────────────────────────────────────────────────────
-// 🌐 전역 변수들
-// • 현재 선택된 언어 상태 관리
-// • 스크롤 및 인터랙션 상태 플래그들
-// ──────────────────────────────────────────────────────────────
+// Language data
+const languages = {
+  en: {
+    // Menu items
+    "menu.news": "News",
+    "menu.education": "Education",
+    "menu.research": "Research",
+    "menu.talks": "Talks",
+    "menu.prize": "Prize",
+    "menu.projects": "Bittering Danbi",
 
-// 현재 선택된 언어 (기본값: 영어)
+    // Name and keywords
+    "name": "Danbinaerin Han",
+    "keyword.music": "Korean traditional music",
+    "keyword.mir": "music information retrieval",
+    "keyword.computational": "computational musicology",
+    "keyword.ai": "music AI",
+
+    // Introduction
+    "intro.p1": "I am a Ph.D. student at the Music and Audio Computing Lab (MACLab), advised by Professors Juhan Nam and Dasaem Jeong.",
+    "intro.p1.strong1": "I am a Ph.D. student",
+    "intro.p1.strong2": "Music and Audio Computing Lab (MACLab)",
+    "intro.p2": "My research applies Music Information Retrieval (MIR) and music AI to Gugak (Korean traditional music), focusing on its unique idioms and expressive characteristics that are often overlooked in conventional analysis.",
+    "intro.p2.strong1": "Music Information Retrieval (MIR)",
+    "intro.p2.strong2": "music AI",
+    "intro.p2.strong3": "Gugak (Korean traditional music)",
+    "intro.p3": "With over 15 years of experience as a haegeum performer, I combine performance-based musical intuition with data-driven analytical methods to investigate what constitutes the \"Korean-ness\" in our music.",
+    "intro.p3.strong1": "15 years",
+    "intro.p3.strong2": "haegeum performer",
+    "intro.p4": "My work aims to illuminate the musical significance of these expressive features and to articulate the value of Korean traditional music within the broader context of contemporary global music.",
+    "intro.p4.strong1": "Korean traditional music",
+    "contact": "E-mail: naerin71@kaist.ac.kr | danbinaerin@naver.com",
+    "contact.email": "E-mail:",
+
+    // Section titles
+    "section.news": "🤗 News",
+    "section.education": "Education",
+    "section.research": "Research",
+    "section.talks": "Talks",
+    "section.prize": "Prize",
+    "section.projects": "Bittering Danbi",
+
+    // Projects
+    "projects.item1": "Project | Restoration Korean Old Music using AI, collaboration with National Gugak Center (2024)",
+    "projects.item2": "Exhibition | 『FLOW』 Producer, Sound designer (2023)",
+    "projects.detail.title": "Project Details",
+    "projects.detail.national.title": "🇰🇷 National Gugak Center Collaboration Project",
+    "projects.detail.national.desc": "Collaboration with National Gugak Center for AI-powered restoration of Korean traditional music.",
+    "projects.detail.flow.title": "🎨 『FLOW』 Exhibition",
+    "projects.detail.flow.desc": "Producer and sound designer for 『FLOW』 exhibition.",
+    "projects.detail.additional.title": "🎵 Additional Projects",
+    "projects.detail.additional.desc": "Various research and artistic activities in the field of Korean traditional music.",
+    "projects.detail.year": "Year:",
+    "projects.detail.year.2024": "2024",
+    "projects.detail.year.2023": "2023",
+    "projects.detail.role": "Role:",
+    "projects.detail.role.research": "Research & Development",
+    "projects.detail.role.producer": "Producer, Sound Designer",
+    "projects.detail.tech": "Technology:",
+    "projects.detail.tech.ai": "AI, Machine Learning, Audio Synthesis",
+    "projects.detail.theme": "Theme:",
+    "projects.detail.theme.flow": "Music and Art Flow",
+    "projects.detail.additional.ismir": "ISMIR Conference Paper Presentation: Korean Folk Song Analysis Research",
+    "projects.detail.additional.academic": "Academic Conference Presentations: Jeongganbo Notation Recognition Research",
+    "projects.detail.additional.performance": "Performance Participation: AI-Generated Korean Traditional Music",
+    "projects.more": "More",
+    "projects.less": "Less",
+    "lang.switch": "EN/KO"
+  },
+  ko: {
+    // Menu items
+    "menu.news": "소식",
+    "menu.education": "학력",
+    "menu.research": "연구",
+    "menu.talks": "발표",
+    "menu.prize": "수상",
+    "menu.projects": "Bittering Danbi",
+
+    // Name and keywords
+    "name": "한 단비내린",
+    "keyword.music": "한국 전통음악",
+    "keyword.mir": "음악정보검색",
+    "keyword.computational": "전산음악학",
+    "keyword.ai": "음악 인공지능",
+
+    // Introduction
+    "intro.p1": "카이스트 문화기술대학원 음악및오디오컴퓨팅연구실(MACLab)에서 남주한, 정다샘 교수님의 지도를 받으며 박사과정을 밟고 있습니다.",
+    "intro.p1.strong1": "카이스트 문화기술대학원",
+    "intro.p1.strong2": "음악및오디오컴퓨팅연구실(MACLab)",
+    "intro.p2": "음악정보처리(MIR) 기술과 음악 AI를 한국 전통음악(국악)에 적용하여, 기존 분석에서 간과되기 쉬운 고유한 어법과 표현적 특징을 탐구합니다.",
+    "intro.p2.strong1": "음악정보처리(MIR)",
+    "intro.p2.strong2": "음악 AI",
+    "intro.p2.strong3": "한국 전통음악(국악)",
+    "intro.p3": "15년 이상의 해금 연주 경험을 바탕으로, 연주자적 직관과 데이터 기반 분석 방법을 결합하여 한국음악의 정체성을 탐구합니다.",
+    "intro.p3.strong1": "15년",
+    "intro.p3.strong2": "해금 연주",
+    "intro.p4": "이러한 표현적 특징들의 음악적 의미를 밝히고, 현대 글로벌 음악 맥락에서 한국 전통음악의 가치를 새롭게 조명하는 연구를 수행합니다.",
+    "intro.p4.strong1": "한국 전통음악",
+    "contact": "이메일: naerin71@kaist.ac.kr | danbinaerin@naver.com",
+    "contact.email": "이메일:",
+
+    // Section titles
+    "section.news": "🤗 소식",
+    "section.education": "학력",
+    "section.research": "연구",
+    "section.talks": "발표",
+    "section.prize": "수상",
+    "section.projects": "Bittering Danbi",
+
+    // Projects
+    "projects.item1": "프로젝트 | 국립국악원 협업, AI를 활용한 한국 고음악 복원 (2024)",
+    "projects.item2": "전시 | 『FLOW』 프로듀서, 사운드 디자이너 (2023)",
+    "projects.detail.title": "프로젝트 상세 정보",
+    "projects.detail.national.title": "🇰🇷 국립국악원 협업 프로젝트",
+    "projects.detail.national.desc": "국립국악원과 협업하여 AI 기술을 활용한 한국 고음악 복원 프로젝트입니다.",
+    "projects.detail.flow.title": "🎨 『FLOW』 전시",
+    "projects.detail.flow.desc": "『FLOW』 전시의 프로듀서 및 사운드 디자이너로 참여하였습니다.",
+    "projects.detail.additional.title": "🎵 추가 프로젝트",
+    "projects.detail.additional.desc": "국악 분야에서의 다양한 연구 및 예술 활동에 참여하고 있습니다.",
+    "projects.detail.year": "기간:",
+    "projects.detail.year.2024": "2024년",
+    "projects.detail.year.2023": "2023년",
+    "projects.detail.role": "역할:",
+    "projects.detail.role.research": "연구 및 개발 참여",
+    "projects.detail.role.producer": "프로듀서, 사운드 디자이너",
+    "projects.detail.tech": "기술:",
+    "projects.detail.tech.ai": "머신러닝, 딥러닝, 음성 합성",
+    "projects.detail.theme": "주제:",
+    "projects.detail.theme.flow": "음악과 예술의 흐름",
+    "projects.detail.additional.ismir": "ISMIR 학회 논문 발표: 한국 민요 분석 연구",
+    "projects.detail.additional.academic": "학술대회 발표: 정간보 음표 인식 연구",
+    "projects.detail.additional.performance": "공연 참여: AI 생성 국악 공연",
+    "projects.more": "더보기",
+    "projects.less": "접기",
+    "lang.switch": "영/한"
+  }
+};
+
+// Current language
 let currentLang = 'en';
 
-// ──────────────────────────────────────────────────────────────
-// 🎯 언어 업데이트 함수
-// • data.js의 다국어 데이터를 사용하여 텍스트 동적 변경
-// • 모든 data-key 속성을 가진 요소에 적용
-// ──────────────────────────────────────────────────────────────
+// Function to update text content
 function updateLanguage(lang) {
-  // console.log('=== updateLanguage called with:', lang);
+  console.log('=== updateLanguage called with:', lang);
   currentLang = lang;
   document.body.className = lang === 'ko' ? 'lang-ko' : 'lang-en';
 
-  // ──────────────────────────────────────────────────────────────
-  // 🔄 다국어 텍스트 업데이트 로직
-  // • 모든 data-key 속성을 가진 요소를 찾아서 텍스트 교체
-  // • languages 객체에서 해당 언어의 번역 데이터 가져오기
-  // ──────────────────────────────────────────────────────────────
-
-  // data-key 속성을 가진 모든 요소 선택
+  // Update all elements with data-key attributes
   const elements = document.querySelectorAll('[data-key]');
-  // console.log('Found elements with data-key:', elements.length);
+  console.log('Found elements with data-key:', elements.length);
 
-  // 각 요소에 대해 번역 적용
   elements.forEach((element, index) => {
     const key = element.getAttribute('data-key');
-    // console.log(`Element ${index}: key="${key}"`);
+    console.log(`Element ${index}: key="${key}"`);
 
-    // 해당 언어의 번역 데이터가 존재하는지 확인 후 적용
     if (languages[lang] && languages[lang][key]) {
       const oldText = element.textContent;
       const newText = languages[lang][key];
       element.textContent = newText;
-      // console.log(`Updated: "${oldText}" -> "${newText}"`);
+      console.log(`Updated: "${oldText}" -> "${newText}"`);
     } else {
-      // 번역 데이터가 없는 경우 경고 (디버깅용)
-      // console.log(`No translation found for key: ${key} in language: ${lang}`);
+      console.log(`No translation found for key: ${key} in language: ${lang}`);
     }
   });
 
-  // ──────────────────────────────────────────────────────────────
-  // 🌐 HTML 문서 언어 속성 업데이트
-  // • 접근성 및 SEO를 위한 lang 속성 설정
-  // • 스크린 리더가 올바른 언어로 콘텐츠 읽도록 지원
-  // ──────────────────────────────────────────────────────────────
+  // Update lang attribute
   document.documentElement.lang = lang;
-  // console.log('=== Language update completed');
+  console.log('=== Language update completed');
 }
 
-// ──────────────────────────────────────────────────────────────
-// 🚀 DOM 로드 완료 이벤트 리스너
-// • 페이지 로드 시 모든 인터랙션 기능 초기화
-// • 섹션 동적 로딩, 언어 토글, 메뉴 네비게이션 등 설정
-// ──────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", function () {
-  // console.log('=== DOM Content Loaded ===');
+  console.log('=== DOM Content Loaded ===');
 
-  // ──────────────────────────────────────────────────────────────
-  // 📦 섹션 동적 로딩 기능
-  // • 각 섹션을 별도의 HTML 파일에서 로드
-  // • 성능 최적화를 위해 필요한 시점에 로드
-  // ──────────────────────────────────────────────────────────────
-  const sections = [
-    { id: 'cover', path: 'sections/cover.html', container: 'cover-container' },
-    { id: 'news', path: 'sections/news.html', container: 'news-container' },
-    { id: 'education', path: 'sections/education.html', container: 'education-container' },
-    { id: 'research', path: 'sections/research.html', container: 'research-container' },
-    { id: 'talks', path: 'sections/talks.html', container: 'talks-container' },
-    { id: 'prize', path: 'sections/prize.html', container: 'prize-container' },
-    { id: 'projects', path: 'sections/projects.html', container: 'projects-container' }
-  ];
+  const toggleBtn = document.getElementById("lang-toggle");
+  console.log('Toggle button element:', toggleBtn);
 
-  // ──────────────────────────────────────────────────────────────
-  // 🔄 섹션 로딩 함수
-  // • HTML 파일을 fetch로 로드하여 컨테이너에 삽입
-  // • 에러 처리 및 로딩 상태 관리
-  // ──────────────────────────────────────────────────────────────
-  async function loadSection(sectionId, filePath, containerId) {
-    try {
-      const response = await fetch(filePath);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const html = await response.text();
-      const container = document.getElementById(containerId);
-      if (container) {
-        container.innerHTML = html;
-        console.log(`✅ Section ${sectionId} loaded successfully`);
-      }
-    } catch (error) {
-      console.error(`❌ Failed to load section ${sectionId}:`, error);
-    }
+  if (toggleBtn) {
+    console.log('Adding click event listener to toggle button');
+
+    toggleBtn.addEventListener("click", function (event) {
+      console.log('=== BUTTON CLICKED ===');
+
+      event.preventDefault(); // a 태그의 기본 동작 방지
+      const newLang = currentLang === 'en' ? 'ko' : 'en';
+      console.log('New language will be:', newLang);
+      updateLanguage(newLang);
+      return false; // 추가 보험
+    });
+
+    // 초기 언어 설정 (첫 로드 시 영어로 설정)
+    console.log('Setting initial language to English');
+    updateLanguage('en');
+  } else {
+    console.error('=== TOGGLE BUTTON NOT FOUND ===');
   }
 
-  // ──────────────────────────────────────────────────────────────
-  // 🎯 모든 섹션 로딩 실행
-  // • 페이지 로드 시 모든 섹션 동시 로딩
-  // • 로딩 완료 후 인터랙션 기능 초기화
-  // ──────────────────────────────────────────────────────────────
-  async function loadAllSections() {
-    const loadPromises = sections.map(section =>
-      loadSection(section.id, section.path, section.container)
-    );
-
-    try {
-      await Promise.all(loadPromises);
-      console.log('🎉 All sections loaded successfully');
-
-      // 섹션 로딩 완료 후 인터랙션 기능 초기화
-      initializeInteractions();
-    } catch (error) {
-      console.error('❌ Error loading sections:', error);
-    }
+  const profileImage = document.querySelector('.sidebar .profile img');
+  if (profileImage) {
+    profileImage.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
-  // ──────────────────────────────────────────────────────────────
-  // 🎮 인터랙션 기능 초기화
-  // • 섹션 로딩 완료 후에 실행되어야 함
-  // • 뉴스 토글, 프로젝트 확장 등 모든 동적 기능 설정
-  // ──────────────────────────────────────────────────────────────
-  function initializeInteractions() {
-
-    // ──────────────────────────────────────────────────────────────
-    // 🌐 언어 전환 버튼 초기화
-    // • 우상단 언어 토글 버튼 이벤트 설정
-    // • 영어 ↔ 한국어 전환 기능 구현
-    // ──────────────────────────────────────────────────────────────
-    const toggleBtn = document.getElementById("lang-toggle");
-    // console.log('Toggle button element:', toggleBtn);
-
-    if (toggleBtn) {
-      // console.log('Adding click event listener to toggle button');
-
-      toggleBtn.addEventListener("click", function (event) {
-        // console.log('=== BUTTON CLICKED ===');
-
-        event.preventDefault(); // a 태그의 기본 동작 방지
-        const newLang = currentLang === 'en' ? 'ko' : 'en';
-        // console.log('New language will be:', newLang);
-        updateLanguage(newLang);
-        return false; // 추가 보험
-      });
-
-      // 초기 언어 설정 (첫 로드 시 영어로 설정)
-      // console.log('Setting initial language to English');
-      updateLanguage('en');
-    } else {
-      // console.error('=== TOGGLE BUTTON NOT FOUND ===');
-    }
-
-  // ──────────────────────────────────────────────────────────────
-  // 📋 사이드바 메뉴 네비게이션 초기화
-  // • 메뉴 아이템 호버 효과 및 클릭 시 스크롤 기능
-  // • 키보드 접근성 지원 (Enter, Space 키)
-  // • 중복 스크롤 방지 메커니즘
-  // ──────────────────────────────────────────────────────────────
+  // Menu item hover effect
   const menuItems = document.querySelectorAll('.menu-item');
-  let isScrolling = false; // 중복 스크롤 액션 방지 플래그
-  let scrollTimeout; // 스크롤 타임아웃 참조 저장
-
-  // console.log('🎯 Found menu items:', menuItems.length);
-  // console.log('📋 Menu items:', Array.from(menuItems).map(item => ({
-  //   text: item.textContent.trim(),
-  //   section: item.getAttribute('data-section')
-  // })));
-
-  // ──────────────────────────────────────────────────────────────
-  // 🖱️ 메뉴 클릭 이벤트 핸들러
-  // • 메뉴 클릭 시 해당 섹션으로 스무스 스크롤
-  // • 활성 메뉴 상태 업데이트 및 시각적 피드백
-  // • 중복 클릭 방지 및 안전한 이벤트 처리
-  // ──────────────────────────────────────────────────────────────
-  const handleMenuClick = function(e) {
-    // Prevent all default behaviors
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-
-    // Prevent multiple clicks while scrolling
-    if (isScrolling) {
-      console.log('⏳ Already scrolling, ignoring click');
-      return false;
-    }
-
-    const sectionId = this.getAttribute('data-section');
-    console.log('🎯 Menu clicked:', sectionId, 'Element:', this);
-
-    if (sectionId) {
-      const targetSection = document.getElementById(sectionId);
-
-      if (targetSection) {
-        console.log('✅ Target section found, scrolling to:', sectionId);
-
-        // Clear any existing timeout
-        if (scrollTimeout) {
-          clearTimeout(scrollTimeout);
-        }
-
-        isScrolling = true; // Set flag to prevent multiple actions
-
-        // Remove active and hover classes from all menu items
-        menuItems.forEach(menuItem => {
-          menuItem.classList.remove('active');
-          menuItem.classList.remove('hover');
-        });
-
-        // Add active class to clicked menu item
-        this.classList.add('active');
-        console.log('✅ Active class added to menu item');
-
-        // Smooth scroll to target section with offset for sidebar
-        const scrollToSection = () => {
-          const rect = targetSection.getBoundingClientRect();
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const targetTop = scrollTop + rect.top - 80; // 80px offset for sidebar
-
-          console.log('📐 Scroll calculations:', { rectTop: rect.top, scrollTop, targetTop });
-
-          // Use scrollTo with smooth behavior for better control
-          window.scrollTo({
-            top: targetTop,
-            behavior: 'smooth'
-          });
-
-          // Reset scrolling flag after animation completes (longer timeout for safety)
-          scrollTimeout = setTimeout(() => {
-            isScrolling = false;
-            // Remove any lingering hover states after scrolling
-            menuItems.forEach(item => {
-              item.classList.remove('hover');
-            });
-            console.log('🔄 Scrolling flag reset');
-          }, 800); // Increased timeout for better safety
-        };
-
-        scrollToSection();
-        console.log('🚀 Scrolling initiated to:', sectionId);
-      } else {
-        console.error('❌ Section not found:', sectionId);
-      }
-    } else {
-      console.error('❌ No data-section attribute on clicked item');
-    }
-
-    return false; // Extra prevention
-  };
-
-  menuItems.forEach((item, index) => {
-    // console.log(`Menu item ${index}:`, item.textContent.trim(), 'data-section:', item.getAttribute('data-section'));
-
-    // Ensure proper cursor and accessibility
-    item.style.cursor = 'pointer';
-    item.setAttribute('aria-pressed', 'false');
-
-    // Hover effects - use CSS classes instead of inline styles
+  menuItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
-      if (!isScrolling && !item.classList.contains('active')) {
-        item.classList.add('hover');
-      }
+      item.style.color = '#F2A950';
     });
     item.addEventListener('mouseleave', () => {
-      if (!isScrolling) {
-        item.classList.remove('hover');
-      }
-    });
-
-    // Click event for smooth scrolling
-    item.addEventListener('click', handleMenuClick);
-
-    // Keyboard navigation support
-    item.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleMenuClick.call(this, e);
-      }
+      item.style.color = '';
     });
   });
 
-  // ──────────────────────────────────────────────────────────────
-  // 📍 스크롤 기반 메뉴 활성화 상태 업데이트
-  // • 사용자가 스크롤할 때 현재 보이는 섹션에 맞춰 메뉴 활성화
-  // • 화면 중앙을 기준으로 가장 가까운 섹션 감지
-  // • 실시간으로 메뉴 상태 동기화
-  // ──────────────────────────────────────────────────────────────
-  function updateActiveMenuOnScroll() {
-    // Skip menu updates while scrolling from menu click
-    if (isScrolling) {
-      return;
-    }
-
-    const sections = ['cover', 'news', 'education', 'research', 'talks', 'prize', 'projects'];
-    const scrollPosition = window.scrollY + window.innerHeight * 0.5; // 화면 중앙에서 감지
-
-    // Remove active and hover classes from all menu items
-    menuItems.forEach(item => {
-      item.classList.remove('active');
-      item.classList.remove('hover');
-    });
-
-    let activatedSection = null;
-
-    // Find the current section in view (화면 중앙이 속한 섹션 찾기)
-    for (let i = 0; i < sections.length; i++) {
-      const section = document.getElementById(sections[i]);
-      if (section) {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-
-        // 스크롤 위치가 섹션 범위 내에 있는지 확인
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          activatedSection = sections[i];
-
-          // Find the corresponding menu item and activate it
-          const activeMenuItem = document.querySelector(`.menu-item[data-section="${sections[i]}"]`);
-          if (activeMenuItem) {
-            activeMenuItem.classList.add('active');
-          }
-          break;
-        }
-      }
-    }
-
-    // 만약 어떤 섹션에도 속하지 않는다면, 가장 가까운 섹션을 찾음
-    if (!activatedSection) {
-      let closestSection = null;
-      let minDistance = Infinity;
-
-      for (let i = 0; i < sections.length; i++) {
-        const section = document.getElementById(sections[i]);
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionCenter = sectionTop + section.offsetHeight / 2;
-          const distance = Math.abs(scrollPosition - sectionCenter);
-
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestSection = sections[i];
-          }
-        }
-      }
-
-      if (closestSection) {
-        const activeMenuItem = document.querySelector(`.menu-item[data-section="${closestSection}"]`);
-        if (activeMenuItem) {
-          activeMenuItem.classList.add('active');
-        }
-      }
-    }
-  }
-
-  // ──────────────────────────────────────────────────────────────
-  // ⚡ 스크롤 이벤트 최적화 (스로틀링)
-  // • 과도한 스크롤 이벤트 호출 방지를 위한 디바운싱
-  // • 50ms 간격으로 메뉴 업데이트 (약 20fps)
-  // • 성능 향상을 위한 이벤트 최적화
-  // ──────────────────────────────────────────────────────────────
-  let scrollThrottle;
-  window.addEventListener('scroll', function() {
-    if (!scrollThrottle) {
-      scrollThrottle = setTimeout(function() {
-        updateActiveMenuOnScroll();
-        scrollThrottle = null;
-      }, 50); // Throttle to 20fps
-    }
-  });
-
-  // ──────────────────────────────────────────────────────────────
-  // 🎨 프로젝트 상세 내용 토글 기능
-  // • "더보기"/"접기" 버튼으로 프로젝트 상세 정보 표시/숨김
-  // • 부드러운 애니메이션 효과와 함께 컨텐츠 높이 조정
-  // • 스크롤 위치 자동 조정으로 사용자 경험 향상
-  // ──────────────────────────────────────────────────────────────
+  // Project toggle functionality
+  // More button toggle functionality
   const moreBtn = document.getElementById('more-btn');
   const projectExpanded = document.getElementById('project-expanded');
 
@@ -394,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate actual content height
         if (expandedContent) {
           const contentHeight = expandedContent.scrollHeight;
-          // console.log('Content height:', contentHeight);
+          console.log('Content height:', contentHeight);
 
           // Temporarily set height to auto to get actual height
           projectExpanded.style.maxHeight = 'none';
@@ -424,43 +262,70 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ──────────────────────────────────────────────────────────────
-  // 📅 뉴스 연도별 필터링 기능
-  // • 2024년, 2025년 뉴스 선택 버튼
-  // • 클릭 시 해당 연도의 뉴스만 표시하고 나머지는 숨김
-  // • 활성 버튼 상태 시각적 표시
-  // ──────────────────────────────────────────────────────────────
-  const yearButtons = document.querySelectorAll('.year-btn');
-  const news2024 = document.getElementById('news-2024');
-  const news2025 = document.getElementById('news-2025');
+    const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+    const sections = Array.from(sidebarLinks)
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
 
-  if (yearButtons.length && news2024 && news2025) {
-    yearButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        yearButtons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        if (btn.dataset.year === '2024') {
-          news2024.classList.remove('hidden');
-          news2025.classList.add('hidden');
-        } else {
-          news2025.classList.remove('hidden');
-          news2024.classList.add('hidden');
+  if (sidebarLinks.length && sections.length) {
+    const activateSidebar = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+      let found = false;
+      sections.forEach((section, idx) => {
+        if (
+          !found &&
+          section.offsetTop <= scrollPos &&
+          section.offsetTop + section.offsetHeight > scrollPos
+        ) {
+          sidebarLinks.forEach((link) => link.classList.remove("active"));
+          sidebarLinks[idx].classList.add("active");
+          found = true;
         }
       });
+      if (!found) {
+        sidebarLinks.forEach((link) => link.classList.remove("active"));
+      }
+    };
+    window.addEventListener("scroll", activateSidebar);
+    sidebarLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        sidebarLinks.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+      });
     });
-  }
+      activateSidebar();
+    }
 
-    // ──────────────────────────────────────────────────────────────
-    // 🎯 초기 설정 및 메뉴 활성화
-    // • 페이지 로드 시 현재 스크롤 위치에 맞는 메뉴 활성화
-    // • 모든 이벤트 리스너와 기능이 정상 작동하는지 확인
-    // ──────────────────────────────────────────────────────────────
-    updateActiveMenuOnScroll();
-  }
+    const yearButtons = document.querySelectorAll('.year-btn');
+    const newsLists = Array.from(document.querySelectorAll('[id^="news-"]'));
 
-  // ──────────────────────────────────────────────────────────────
-  // 🚀 섹션 로딩 및 초기화 시작
-  // • DOM 로드 완료 후 모든 섹션 로딩 실행
-  // ──────────────────────────────────────────────────────────────
-  loadAllSections();
-});
+    if (yearButtons.length && newsLists.length) {
+      const setActiveYear = (year) => {
+        yearButtons.forEach((b) => b.classList.remove('active'));
+        newsLists.forEach((list) => list.classList.add('hidden'));
+        const activeBtn = Array.from(yearButtons).find(
+          (b) => b.dataset.year === year
+        );
+        const activeList = document.getElementById(`news-${year}`);
+        if (activeBtn) {
+          activeBtn.classList.add('active');
+        }
+        if (activeList) {
+          activeList.classList.remove('hidden');
+        }
+      };
+
+      yearButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setActiveYear(btn.dataset.year);
+        });
+      });
+
+      const defaultYearBtn = Array.from(yearButtons).find((b) =>
+        b.classList.contains('active')
+      );
+      if (defaultYearBtn) {
+        setActiveYear(defaultYearBtn.dataset.year);
+      }
+    }
+  });
