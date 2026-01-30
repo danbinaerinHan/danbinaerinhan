@@ -37,6 +37,6 @@ window.galleryItems = [
   {
     title: 'Childhood (1998)',
     page: 'Galleries/Childhood (1998)/Childhood.html',
-    thumbnail: 'Galleries/Childhood (1998)/IMG_0563.jpeg'
+    thumbnail: 'Galleries/Childhood (1998)/IMG_0570.jpeg'
   }
 ];
