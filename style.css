@@ -25,6 +25,11 @@ body {
   letter-spacing: 0.02em;
 }
 
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 body.lang-en .lang-ko {
   display: none;
 }
