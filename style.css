@@ -408,7 +408,7 @@ p {
 
 .edu-no-bullet {
   list-style: none;
-  margin-left: -20px;
+  margin-left: 0;
   padding-left: 0;
 }
 
