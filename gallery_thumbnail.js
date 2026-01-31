@@ -7,7 +7,7 @@ window.galleryItems = [
   {
     title: 'KSMI (2025)',
     page: 'Galleries/KSMI (2025)/2025 KSMI.html',
-    thumbnail: 'Galleries/KSMI (2025)/IMG_0948.JPG'
+    thumbnail: 'Galleries/KSMI (2025)/IMG_0951.JPG'
   },
   {
     title: 'VR concert (2025)',
