@@ -141,57 +141,35 @@ let currentLang = 'en';
 
 // Function to update text content
 function updateLanguage(lang) {
-  console.log('=== updateLanguage called with:', lang);
   currentLang = lang;
   document.body.className = lang === 'ko' ? 'lang-ko' : 'lang-en';
 
   // Update all elements with data-key attributes
   const elements = document.querySelectorAll('[data-key]');
-  console.log('Found elements with data-key:', elements.length);
 
-  elements.forEach((element, index) => {
+  elements.forEach((element) => {
     const key = element.getAttribute('data-key');
-    console.log(`Element ${index}: key="${key}"`);
-
     if (languages[lang] && languages[lang][key]) {
-      const oldText = element.textContent;
-      const newText = languages[lang][key];
-      element.textContent = newText;
-      console.log(`Updated: "${oldText}" -> "${newText}"`);
-    } else {
-      console.log(`No translation found for key: ${key} in language: ${lang}`);
+      element.textContent = languages[lang][key];
     }
   });
 
   // Update lang attribute
   document.documentElement.lang = lang;
-  console.log('=== Language update completed');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log('=== DOM Content Loaded ===');
-
   const toggleBtn = document.getElementById("lang-toggle");
-  console.log('Toggle button element:', toggleBtn);
 
   if (toggleBtn) {
-    console.log('Adding click event listener to toggle button');
-
     toggleBtn.addEventListener("click", function (event) {
-      console.log('=== BUTTON CLICKED ===');
-
-      event.preventDefault(); // a 태그의 기본 동작 방지
+      event.preventDefault();
       const newLang = currentLang === 'en' ? 'ko' : 'en';
-      console.log('New language will be:', newLang);
       updateLanguage(newLang);
-      return false; // 추가 보험
+      return false;
     });
 
-    // 초기 언어 설정 (첫 로드 시 영어로 설정)
-    console.log('Setting initial language to English');
     updateLanguage('en');
-  } else {
-    console.error('=== TOGGLE BUTTON NOT FOUND ===');
   }
 
   const profileImage = document.querySelector('.sidebar .profile img');
@@ -231,16 +209,13 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         // Calculate actual content height
         if (expandedContent) {
-          const contentHeight = expandedContent.scrollHeight;
-          console.log('Content height:', contentHeight);
-
           // Temporarily set height to auto to get actual height
           projectExpanded.style.maxHeight = 'none';
           const actualHeight = projectExpanded.scrollHeight;
           projectExpanded.style.maxHeight = '0';
 
           // Set the calculated height
-          projectExpanded.style.maxHeight = actualHeight + 30 + 'px'; // Add some padding
+          projectExpanded.style.maxHeight = actualHeight + 30 + 'px';
         }
 
         // Expand
@@ -267,10 +242,18 @@ document.addEventListener("DOMContentLoaded", function () {
       .map((link) => document.querySelector(link.getAttribute("href")))
       .filter(Boolean);
 
+  // 모바일 네비게이션 링크
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav a[href^="#"]');
+  const mobileNavSections = Array.from(mobileNavLinks)
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
   if (sidebarLinks.length && sections.length) {
     const activateSidebar = () => {
       const scrollPos = window.scrollY + window.innerHeight / 2;
       let found = false;
+      let activeIdx = -1;
+
       sections.forEach((section, idx) => {
         if (
           !found &&
@@ -279,11 +262,20 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
           sidebarLinks.forEach((link) => link.classList.remove("active"));
           sidebarLinks[idx].classList.add("active");
+          activeIdx = idx;
           found = true;
         }
       });
       if (!found) {
         sidebarLinks.forEach((link) => link.classList.remove("active"));
+      }
+
+      // 모바일 네비게이션도 같이 업데이트
+      if (mobileNavLinks.length) {
+        mobileNavLinks.forEach((link) => link.classList.remove("active"));
+        if (activeIdx >= 0 && mobileNavLinks[activeIdx]) {
+          mobileNavLinks[activeIdx].classList.add("active");
+        }
       }
     };
     window.addEventListener("scroll", activateSidebar);
@@ -293,8 +285,15 @@ document.addEventListener("DOMContentLoaded", function () {
         link.classList.add("active");
       });
     });
-      activateSidebar();
-    }
+    // 모바일 네비게이션 클릭 이벤트
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileNavLinks.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+      });
+    });
+    activateSidebar();
+  }
 
     const yearButtons = document.querySelectorAll('.year-btn');
     const newsLists = Array.from(document.querySelectorAll('[id^="news-"]'));

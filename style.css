@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
 
+@font-face {
+  font-family: "KG Primary Penmanship";
+  src: url("fonts/KGPrimaryPenmanship.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --primary-bg: #fffffe; 
   --primary-green: #9E978E; 
@@ -13,14 +21,22 @@
 }
 
 html {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 body {
-  font-family: "NanumSquare", sans-serif;
-  background: var(--cream-bg);
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
+  background-color: #ffffff;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #ffffff 0px,
+    #ffffff 30px,
+    rgba(167, 196, 178, 0.18) 30px,
+    rgba(167, 196, 178, 0.18) 31px
+  );
   margin: 0;
   color: var(--text-secondary); /* 본문 텍스트는 부드러운 회색 */
+  font-weight: 300;
   line-height: 1.6;
   letter-spacing: 0.02em;
 }
@@ -260,7 +276,7 @@ nav .sidebar .menu-item:hover,
   padding: 60px 40px 40px;
   width: calc(100vw - 200px);
   max-width: none;
-  background: var(--primary-bg); /* 한지 느낌의 베이지톤 */
+  background: transparent;
   min-height: 100vh;
   /* border-left 제거하여 흰색줄 없앰 */
 }
@@ -328,7 +344,7 @@ h2 {
   border-bottom: 2px solid #F28F38;
   display: inline-block;
   letter-spacing: -0.01em;
-  font-family: "Merriweather", "NanumSquare", serif;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
 }
 
 #news h2 {
@@ -816,12 +832,67 @@ p {
   .content {
     margin-left: 0; /* 모바일에서 왼쪽 마진 제거 */
     padding: 20px; /* 모바일에 맞는 패딩 */
+    padding-bottom: 80px; /* 하단 네비게이션 공간 확보 */
     width: 100%;
   }
 
-  /* 모바일에서 모든 메뉴 관련 요소 숨김 */
-  .mobile-menu-btn,
-  .sidebar-overlay {
-    display: none !important;
+  /* 모바일 하단 네비게이션 바 */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--primary-green);
+    padding: 8px 0;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   }
+
+  .mobile-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--cream-bg);
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav a i {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    background: rgba(214, 228, 229, 0.3);
+    color: #D6E4E5;
+  }
+
+  .mobile-nav a.active {
+    background: #D6E4E5;
+    color: #497174;
+  }
+
+  /* 모바일에서 언어 전환 버튼 위치 조정 */
+  .lang-switch {
+    top: 8px;
+    right: 12px;
+  }
+
+  /* 모바일에서 footer 패딩 조정 */
+  .footer {
+    padding-bottom: 70px;
+  }
+}
+
+/* 데스크톱에서 모바일 네비게이션 숨김 */
+.mobile-nav {
+  display: none;
 }
