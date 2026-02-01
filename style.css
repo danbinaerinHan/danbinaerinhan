@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Caveat:wght@400;500;600;700&family=Gowun+Batang:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Caveat:wght@400;500;600;700&family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&display=swap");
 
 @font-face {
   font-family: "KG Primary Penmanship";
@@ -22,7 +22,7 @@
 }
 
 html {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 body {
@@ -47,24 +47,25 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* 펀치 구멍 */
+/* 펀치 구멍 - 사이드탭 오른쪽, 콘텐츠 왼쪽에 배치 */
 body::before {
   content: '';
   position: fixed;
-  left: 165px;
+  left: 65px;
   top: 0;
   bottom: 0;
   width: 30px;
-  background-image: radial-gradient(circle at center, rgba(200, 200, 200, 0.4) 8px, transparent 8px);
+  background-image: radial-gradient(circle at center, rgba(180, 180, 180, 0.45) 6px, transparent 6px);
   background-size: 30px 93px;
   background-position: center 46px;
   pointer-events: none;
-  z-index: 10;
+  z-index: 5;
 }
 
-/* 한글 텍스트에만 고운바탕 적용 */
+/* 한글 손글씨체 적용 */
 body.lang-ko {
-  font-family: "Gowun Batang", "NanumSquare", serif;
+  font-family: "Nanum Pen Script", "NanumSquare", cursive;
+  font-size: 1.1rem;
 }
 
 img {
@@ -124,30 +125,47 @@ body.lang-ko .lang-en {
   display: flex;
 }
 
+/* 노트 바깥 영역 (사이드탭 왼쪽) */
+body::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  background: #e8e4dc;
+  z-index: 1;
+}
+
+/* 왼쪽 사이드 탭 - 노트 끝자락에서 보이는 인덱스 탭 */
 .sidebar {
-  width: 180px;
+  width: 50px;
   background: transparent;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 100px;
-  padding-left: 10px;
+  padding-top: 80px;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  align-items: flex-end;
+  gap: 6px;
+  z-index: 100;
 }
 
+/* 손그림 아이콘 (해금) */
 .sidebar .profile {
-  width: 50px;
-  height: 50px;
-  margin: 0 0 15px 10px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid rgba(150, 150, 150, 0.3);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  background: #fff;
+  width: 40px;
+  height: 40px;
+  margin: 0 0 20px 0;
+  border-radius: 0;
+  overflow: visible;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar .profile a {
@@ -161,6 +179,14 @@ body.lang-ko .lang-en {
   box-shadow: none;
   outline: none;
   transform: none;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+}
+
+.sidebar .profile a::before {
+  content: '🏠';
+  display: block;
 }
 
 .sidebar .profile a:focus,
@@ -171,9 +197,9 @@ body.lang-ko .lang-en {
 }
 
 .sidebar .profile:hover {
-  border-color: rgba(100, 100, 100, 0.4);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  transform: scale(1.05);
+  border: none;
+  box-shadow: none;
+  transform: scale(1.1);
 }
 
 .sidebar .profile a:hover {
@@ -184,52 +210,50 @@ body.lang-ko .lang-en {
 }
 
 .sidebar .profile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  cursor: pointer;
-  display: block;
+  display: none;
 }
 
 .profile-info {
-  display: none; /* 포스트잇 스타일에서는 숨김 */
+  display: none;
 }
 
-/* 포스트잇 북마크 스타일 */
+/* 왼쪽 사이드 탭 스타일 - 노트 끝자락에 붙은 인덱스 */
 .sidebar a {
-  padding: 8px 12px 8px 14px;
+  padding: 10px 6px;
   color: var(--text-dark);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
   transition: all 0.2s ease;
   border: none;
   position: relative;
   cursor: pointer;
-  margin: 4px 0;
+  margin: 0;
   text-shadow: none;
-  border-radius: 0 4px 4px 0;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  transform-origin: left center;
+  border-radius: 6px 0 0 6px;
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+  transform-origin: right center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 1px;
 }
 
-/* 각 포스트잇 다른 색상 */
-.sidebar a:nth-child(2) { /* News */
-  background: #FFE4B5; /* 연한 주황/노랑 */
+/* 각 탭 다른 색상 - nth-of-type으로 a 태그만 카운트 */
+.sidebar a:nth-of-type(1) { /* News */
+  background: #FFE4B5;
 }
-.sidebar a:nth-child(3) { /* Research */
-  background: #B5E4D0; /* 연한 민트/초록 */
+.sidebar a:nth-of-type(2) { /* Research */
+  background: #B5E4D0;
 }
-.sidebar a:nth-child(4) { /* Education */
-  background: #B5D4FF; /* 연한 파랑 */
+.sidebar a:nth-of-type(3) { /* Education */
+  background: #B5D4FF;
 }
-.sidebar a:nth-child(5) { /* Talks */
-  background: #E4B5FF; /* 연한 보라 */
+.sidebar a:nth-of-type(4) { /* Talks */
+  background: #E4B5FF;
 }
-.sidebar a:nth-child(6) { /* Gallery */
-  background: #FFB5C5; /* 연한 핑크 */
+.sidebar a:nth-of-type(5) { /* Gallery */
+  background: #FFB5C5;
 }
 
 .sidebar a::before {
@@ -237,23 +261,18 @@ body.lang-ko .lang-en {
 }
 
 .sidebar a:hover {
-  transform: translateX(8px) rotate(-1deg);
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(8px);
+  box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .sidebar a.active {
-  transform: translateX(15px) rotate(-2deg);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateX(12px);
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.18);
+  z-index: 10;
 }
 
 .sidebar a.active::after {
-  content: '●';
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.5rem;
-  color: #E07B53;
+  display: none;
 }
 
 .menu-item {
@@ -280,9 +299,10 @@ nav .sidebar .menu-item:hover,
 /* sidebar links have uniform size */
 
 .content {
-  margin-left: 180px;
-  padding: 62px 40px 40px; /* 상단 패딩을 줄 간격에 맞춤 (31px * 2) */
-  width: calc(100vw - 180px);
+  margin-left: 110px;
+  margin-right: 40px;
+  padding: 62px 40px 40px;
+  width: calc(100vw - 190px);
   max-width: none;
   background: transparent;
   min-height: 100vh;
@@ -378,31 +398,31 @@ h2 {
   position: relative;
 }
 
-/* 각 섹션별 색상 + 하이라이트 - 사이드바 포스트잇과 매칭 */
+/* 각 섹션별 색상 + 하이라이트 - 사이드탭과 동일 색상 */
 #news h2 {
   margin-top: 0;
-  color: #B8860B;
-  background: linear-gradient(180deg, transparent 60%, rgba(255, 228, 181, 0.5) 60%);
+  color: #996B00;
+  background: linear-gradient(180deg, transparent 60%, #FFE4B5 60%);
 }
 
 #research h2 {
-  color: #4A7C5F;
-  background: linear-gradient(180deg, transparent 60%, rgba(181, 228, 208, 0.5) 60%);
+  color: #3D7A5A;
+  background: linear-gradient(180deg, transparent 60%, #B5E4D0 60%);
 }
 
 #education h2 {
-  color: #5A7FBA;
-  background: linear-gradient(180deg, transparent 60%, rgba(181, 212, 255, 0.5) 60%);
+  color: #4A6FA5;
+  background: linear-gradient(180deg, transparent 60%, #B5D4FF 60%);
 }
 
 #talks h2 {
-  color: #8B5A8B;
-  background: linear-gradient(180deg, transparent 60%, rgba(228, 181, 255, 0.5) 60%);
+  color: #7A4D7A;
+  background: linear-gradient(180deg, transparent 60%, #E4B5FF 60%);
 }
 
 #gallery h2 {
-  color: #C27085;
-  background: linear-gradient(180deg, transparent 60%, rgba(255, 181, 197, 0.5) 60%);
+  color: #A65070;
+  background: linear-gradient(180deg, transparent 60%, #FFB5C5 60%);
 }
 
 h3 {
@@ -531,7 +551,7 @@ p:last-child {
 }
 
 .edu-detail {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #666;
   line-height: var(--line-height);
   display: block;
@@ -551,6 +571,20 @@ p:last-child {
 
 .edu-detail a:hover {
   text-decoration: underline;
+}
+
+/* talks section */
+#talks ul {
+  margin-top: var(--line-height);
+}
+
+#talks li {
+  margin-bottom: var(--line-height);
+  padding-bottom: 0;
+}
+
+#talks li:last-child {
+  margin-bottom: 0;
 }
 
 /* research section */
@@ -664,30 +698,58 @@ p:last-child {
 }
 
 #cover {
-  padding: calc(var(--line-height) * 2) 0; /* 62px */
+  padding: var(--line-height) 0;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 31px;
+  gap: 20px;
 }
 
 .cover-content {
   flex: 1;
 }
 
+.cover-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .cover-image {
-  width: 100%;
+  width: 200px;
   height: auto;
+  border-radius: 2px;
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.2);
+  transform: rotate(2deg);
+}
+
+/* 테이프 다꾸 효과 - 상단만 */
+.cover-image-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 24px;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 200, 0.9) 0%,
+    rgba(255, 242, 170, 0.8) 100%
+  );
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(220, 200, 120, 0.3);
 }
 
 .cover-media {
-  flex: 0 1 280px;
-  max-width: 280px;
+  flex: 0 1 220px;
+  max-width: 220px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
+  margin-top: calc(var(--line-height) * 2);
 }
 
 .gallery-cta {
@@ -986,17 +1048,19 @@ p:last-child {
 }
 
 @media (max-width: 768px) {
-  /* 모바일에서 펀치 구멍 숨김 */
-  body::before {
+  /* 모바일에서 펀치 구멍, 노트 바깥 영역 숨김 */
+  body::before,
+  body::after {
     display: none;
   }
 
   .sidebar {
-    display: none; /* 모바일에서 사이드바 완전히 숨김 */
+    display: none; /* 모바일에서 사이드탭 숨김 */
   }
 
   .content {
     margin-left: 0;
+    margin-right: 0;
     padding: 31px 20px; /* 상단 패딩을 줄 간격에 맞춤 */
     padding-bottom: 93px; /* 하단 네비게이션 공간 확보 (31px * 3) */
     width: 100%;
