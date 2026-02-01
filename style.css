@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Caveat:wght@400;500;600;700&family=Gowun+Batang:wght@400;700&display=swap");
 
 @font-face {
   font-family: "KG Primary Penmanship";
@@ -9,8 +9,8 @@
 }
 
 :root {
-  --primary-bg: #fffffe; 
-  --primary-green: #9E978E; 
+  --primary-bg: #fffffe;
+  --primary-green: #9E978E;
   --primary-yellow: transparent;
   --accent-orange: #D6E4E5;
   --dark-orange: #497174;
@@ -18,6 +18,7 @@
   --text-secondary: #5C6470; /* 부드러운 회색 */
   --warm-brown: #ffca74; /* 따뜻한 토프 */
   --cream-bg: #FEFEFE;
+  --line-height: 31px; /* 노트 줄 간격 */
 }
 
 html {
@@ -26,19 +27,44 @@ html {
 
 body {
   font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
-  background-color: #ffffff;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #ffffff 0px,
-    #ffffff 30px,
-    rgba(167, 196, 178, 0.18) 30px,
-    rgba(167, 196, 178, 0.18) 31px
-  );
+  background-color: #fdfcf9;
+  background-image:
+    /* 종이 질감 노이즈 */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
+    /* 노트 가로줄 */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 30px,
+      rgba(167, 196, 178, 0.25) 30px,
+      rgba(167, 196, 178, 0.25) 31px
+    );
+  background-blend-mode: overlay, normal;
   margin: 0;
-  color: var(--text-secondary); /* 본문 텍스트는 부드러운 회색 */
-  font-weight: 300;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: var(--line-height);
+  letter-spacing: 0.01em;
+}
+
+/* 펀치 구멍 */
+body::before {
+  content: '';
+  position: fixed;
+  left: 165px;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background-image: radial-gradient(circle at center, rgba(200, 200, 200, 0.4) 8px, transparent 8px);
+  background-size: 30px 93px;
+  background-position: center 46px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* 한글 텍스트에만 고운바탕 적용 */
+body.lang-ko {
+  font-family: "Gowun Batang", "NanumSquare", serif;
 }
 
 img {
@@ -64,33 +90,34 @@ body.lang-ko .lang-en {
 .lang-switch button {
   margin-left: 8px;
   padding: 4px 8px;
-  border: 2px solid #D6E4E5;
+  border: none;
   background: transparent;
-  color: var(--primary-green);
+  color: var(--text-secondary);
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   gap: 4px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(58, 95, 58, 0.1);
+  transition: all 0.2s ease;
+  box-shadow: none;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
 }
 
 .lang-switch a:hover,
 .lang-switch button:hover {
-  background: var(--primary-yellow);
-  color: var(--text-dark);
-  border-color: #D6E4E5;
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(73, 113, 116, 0.28);
+  background: transparent;
+  color: #6B7FD7; /* 파란 펜 */
+  border-color: transparent;
+  transform: none;
+  box-shadow: none;
 }
 
 .lang-switch .lang-text {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
 }
 
 .layout {
@@ -98,30 +125,29 @@ body.lang-ko .lang-en {
 }
 
 .sidebar {
-  width: 200px;
-  background-color: var(--primary-green);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-  background-size: 12px 12px;
+  width: 180px;
+  background: transparent;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 80px;
+  padding-top: 100px;
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 
 .sidebar .profile {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 20px;
+  width: 50px;
+  height: 50px;
+  margin: 0 0 15px 10px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid rgba(150, 150, 150, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: #fff;
 }
 
 .sidebar .profile a {
@@ -145,8 +171,9 @@ body.lang-ko .lang-en {
 }
 
 .sidebar .profile:hover {
-  border-color: rgba(214, 228, 229, 0.95);
-  box-shadow: 0 0 12px rgba(214, 228, 229, 0.6);
+  border-color: rgba(100, 100, 100, 0.4);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
 }
 
 .sidebar .profile a:hover {
@@ -166,99 +193,80 @@ body.lang-ko .lang-en {
 }
 
 .profile-info {
-  text-align: center;
-  color: #fff;
-  font-size: 0.8rem;
-  line-height: 1.2;
-  margin: 0 10px 20px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  display: none; /* 포스트잇 스타일에서는 숨김 */
 }
 
+/* 포스트잇 북마크 스타일 */
 .sidebar a {
-  padding: 12px 20px;
-  color: var(--cream-bg);
+  padding: 8px 12px 8px 14px;
+  color: var(--text-dark);
   text-decoration: none;
   font-weight: 600;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  font-size: 0.85rem;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
+  transition: all 0.2s ease;
+  border: none;
   position: relative;
   cursor: pointer;
-  margin: 2px 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  margin: 4px 0;
+  text-shadow: none;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transform-origin: left center;
+}
+
+/* 각 포스트잇 다른 색상 */
+.sidebar a:nth-child(2) { /* News */
+  background: #FFE4B5; /* 연한 주황/노랑 */
+}
+.sidebar a:nth-child(3) { /* Research */
+  background: #B5E4D0; /* 연한 민트/초록 */
+}
+.sidebar a:nth-child(4) { /* Education */
+  background: #B5D4FF; /* 연한 파랑 */
+}
+.sidebar a:nth-child(5) { /* Talks */
+  background: #E4B5FF; /* 연한 보라 */
+}
+.sidebar a:nth-child(6) { /* Gallery */
+  background: #FFB5C5; /* 연한 핑크 */
 }
 
 .sidebar a::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-left: 4px solid var(--accent-orange);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  transition: all 0.3s ease;
-  opacity: 0;
+  display: none;
 }
 
 .sidebar a:hover {
-  background: var(--primary-yellow);
-  color: #fff;
-  border-color: var(--accent-orange);
-  transform: translateX(8px);
-  box-shadow: 0 4px 12px rgba(242, 169, 80, 0.15);
-}
-
-.sidebar a:hover::before {
-  opacity: 1;
+  transform: translateX(8px) rotate(-1deg);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .sidebar a.active {
-  background: #D6E4E5;
-  color: #497174;
-  border-color: var(--dark-orange);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
-  transform: translateX(12px);
+  transform: translateX(15px) rotate(-2deg);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.sidebar a.active::before {
-  opacity: 1;
+.sidebar a.active::after {
+  content: '●';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.5rem;
+  color: #E07B53;
 }
 
 .menu-item {
-  padding: 12px 20px;
-  color: var(--cream-bg);
-  font-weight: 600;
-  border-radius: 6px;
-  font-size: 1rem;
-  margin: 2px 0;
-  opacity: 0.8;
-  transition: opacity 0.3s ease, color 0.3s ease;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  display: none; /* 포스트잇 스타일에서는 사용 안함 */
 }
 
 nav .sidebar .menu-item:hover,
 .menu-item:hover {
-  opacity: 1;
-  color: #F2A950 !important;
+  display: none;
 }
 
 .project-link {
-  margin: 16px 0;
-  color: var(--primary-yellow);
-  background: transparent;
-  border: 1px solid var(--primary-yellow);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.project-link:hover {
-  color: var(--text-dark);
-  background: var(--primary-yellow);
-  transform: translateX(4px);
+  /* Gallery는 이미 nth-child(6)에서 핑크색으로 설정됨 */
 }
 
 .more-btn.active {
@@ -272,26 +280,24 @@ nav .sidebar .menu-item:hover,
 /* sidebar links have uniform size */
 
 .content {
-  margin-left: 200px;
-  padding: 60px 40px 40px;
-  width: calc(100vw - 200px);
+  margin-left: 180px;
+  padding: 62px 40px 40px; /* 상단 패딩을 줄 간격에 맞춤 (31px * 2) */
+  width: calc(100vw - 180px);
   max-width: none;
   background: transparent;
   min-height: 100vh;
-  /* border-left 제거하여 흰색줄 없앰 */
 }
 
 .content section + section {
-  /* border-top 제거하여 흰색줄 없앰 */
-  margin-top: 60px;
-  padding-top: 50px;
+  margin-top: 62px; /* 31px * 2 */
+  padding-top: 31px;
   position: relative;
 }
 
 .content section + section::before {
   content: '';
   position: absolute;
-  top: -30px;
+  top: -31px; /* 줄 간격에 맞춤 */
   left: 50%;
   transform: translateX(-50%);
   width: 60px;
@@ -301,58 +307,126 @@ nav .sidebar .menu-item:hover,
 }
 
 .keywords {
-  margin-top: 4px;
-  margin-bottom: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  line-height: var(--line-height);
+  min-height: var(--line-height);
+  align-items: center;
 }
 
 .keyword {
   background: transparent;
-  color: #497174;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 0.85rem;
+  padding: 0 4px;
+  border-radius: 0;
+  font-size: 0.9rem;
   font-weight: 600;
-  border: 2px solid var(--accent-orange);
+  border: none;
   box-shadow: none;
+  line-height: var(--line-height);
+}
+
+/* 다양한 펜 색상 효과 */
+.keyword:nth-child(1) {
+  color: #E07B53; /* 주황/빨강 펜 */
+}
+
+.keyword:nth-child(2) {
+  color: #5B8A72; /* 초록 펜 */
+}
+
+.keyword:nth-child(3) {
+  color: #6B7FD7; /* 파랑 펜 */
+}
+
+.keyword:nth-child(4) {
+  color: #9B6B9E; /* 보라 펜 */
 }
 
 .section {
-  margin-bottom: 40px;
+  margin-bottom: 31px;
 }
 
 h1 {
   margin-top: 0;
+  margin-bottom: 0;
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--text-dark); /* 가장 진한 색상 */
+  color: var(--text-dark);
   text-align: left;
   text-shadow: 0 1px 2px rgba(26, 37, 40, 0.1);
   letter-spacing: -0.02em;
   font-family: "Merriweather", "NanumSquare", serif;
+  line-height: calc(var(--line-height) * 2); /* 큰 제목은 2줄 높이 */
 }
 
 h2 {
-  padding-bottom: 8px;
-  margin-top: 50px;
-  color: var(--text-dark); /* 진한 색상으로 변경 */
+  padding: 0 6px 2px 2px;
+  margin-top: var(--line-height);
+  margin-bottom: 0;
+  color: var(--text-dark);
   text-align: left;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  border-bottom: 2px solid #F28F38;
+  border: none;
   display: inline-block;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
+  line-height: var(--line-height);
+  position: relative;
 }
 
+/* 각 섹션별 색상 + 하이라이트 - 사이드바 포스트잇과 매칭 */
 #news h2 {
-  font-size: 2rem;
+  margin-top: 0;
+  color: #B8860B;
+  background: linear-gradient(180deg, transparent 60%, rgba(255, 228, 181, 0.5) 60%);
+}
+
+#research h2 {
+  color: #4A7C5F;
+  background: linear-gradient(180deg, transparent 60%, rgba(181, 228, 208, 0.5) 60%);
+}
+
+#education h2 {
+  color: #5A7FBA;
+  background: linear-gradient(180deg, transparent 60%, rgba(181, 212, 255, 0.5) 60%);
+}
+
+#talks h2 {
+  color: #8B5A8B;
+  background: linear-gradient(180deg, transparent 60%, rgba(228, 181, 255, 0.5) 60%);
+}
+
+#gallery h2 {
+  color: #C27085;
+  background: linear-gradient(180deg, transparent 60%, rgba(255, 181, 197, 0.5) 60%);
+}
+
+h3 {
+  margin-top: var(--line-height);
+  margin-bottom: 0;
+  line-height: var(--line-height);
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+#news ul {
+  margin-top: 0;
+  padding-top: var(--line-height);
 }
 
 #news li {
   font-size: 0.95rem;
+  margin-bottom: 0;
+  padding-bottom: var(--line-height);
+}
+
+#news li:last-child {
+  padding-bottom: 0;
 }
 
 #news a {
@@ -364,44 +438,51 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: calc(var(--line-height) * 2);
 }
 
 .section-link {
   font-size: 1rem;
-  color: #497174;
+  color: #5B8A72; /* 초록 펜 */
   text-decoration: none;
   font-weight: 600;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
 }
 
 .section-link:hover {
-  color: #1A2528;
+  color: #3D6B52;
   text-decoration: underline;
 }
 
 .section-link--footer {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: var(--line-height);
+  line-height: var(--line-height);
 }
 
 .year-toggle button {
-  margin-left: 8px;
-  padding: 4px 8px;
-  border: 2px solid #A7C4B2;
+  margin-left: 12px;
+  padding: 2px 0;
+  border: none;
+  border-bottom: 2px solid transparent;
   background: transparent;
-  color: var(--text-dark);
+  color: var(--text-secondary);
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0;
   font-weight: 600;
-  transition: all 0.3s ease;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
-.year-toggle button.active,
 .year-toggle button:hover {
-  background: rgba(167, 196, 178, 0.15);
-  border-color: #A7C4B2;
   color: var(--text-dark);
-  transform: translateY(-1px);
-  box-shadow: none;
+  border-bottom-color: var(--text-secondary);
+}
+
+.year-toggle button.active {
+  color: #E07B53; /* 빨간 펜으로 동그라미 친 느낌 */
+  border-bottom: 2px solid #E07B53;
 }
 
 .hidden {
@@ -410,22 +491,57 @@ h2 {
 
 ul {
   padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+li {
+  line-height: var(--line-height);
+  margin-bottom: var(--line-height); /* 리스트 항목 사이 한 줄 간격 */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+li:last-child {
+  margin-bottom: 0;
 }
 
 p {
-  margin: 1.8em 0;
+  margin: 0 0 var(--line-height) 0; /* 문단 사이 한 줄 간격 */
+  padding: 0;
+  line-height: var(--line-height);
 }
 
-/* education details */
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* education section */
+#education ul {
+  margin-top: var(--line-height);
+}
+
+#education li {
+  margin-bottom: var(--line-height);
+  padding-bottom: 0;
+}
+
+#education li:last-child {
+  margin-bottom: 0;
+}
+
 .edu-detail {
   font-size: 0.95rem;
   color: #666;
+  line-height: var(--line-height);
+  display: block;
 }
 
 .edu-no-bullet {
   list-style: none;
   margin-left: 0;
   padding-left: 0;
+  margin-top: 0;
 }
 
 .edu-detail a {
@@ -437,24 +553,62 @@ p {
   text-decoration: underline;
 }
 
-/* research entries */
+/* research section */
+#research ul {
+  margin-top: var(--line-height);
+}
+
+#research h3 {
+  margin-top: var(--line-height);
+  margin-bottom: 0;
+  line-height: var(--line-height);
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.research-topic {
+  margin-bottom: var(--line-height);
+}
+
 .paper-entry {
-  margin-bottom: 24px;
+  margin-bottom: var(--line-height);
   font-size: 0.95rem;
+  list-style: none;
+}
+
+.paper-entry:last-child {
+  margin-bottom: 0;
 }
 
 .paper-title {
   font-weight: 700;
   font-size: 1rem;
+  line-height: var(--line-height);
 }
 
 .paper-authors {
   font-style: italic;
   font-size: 0.95em;
+  line-height: var(--line-height);
 }
 
 .paper-venue {
   font-size: 0.9em;
+  line-height: var(--line-height);
+}
+
+/* talks section */
+#talks ul {
+  margin-top: var(--line-height);
+}
+
+#talks li {
+  margin-bottom: var(--line-height);
+  padding-bottom: 0;
+}
+
+#talks li:last-child {
+  margin-bottom: 0;
 }
 
 .pdf-toggle {
@@ -479,32 +633,43 @@ p {
 .pdf-btn {
   display: inline-block;
   margin-left: 6px;
-  padding: 2px 6px;
-  border: 1px solid #F6B26B;
-  background: var(--primary-yellow);
-  color: var(--text-dark);
-  border-radius: 6px;
+  padding: 1px 5px;
+  border: none;
+  background: #FFFACD; /* 연한 노랑 스티커 */
+  color: #666;
+  border-radius: 2px;
   font-weight: 600;
   text-decoration: none;
-  font-size: 0.75rem;
-  transition: all 0.3s ease;
+  font-size: 0.65rem;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
+  transition: all 0.2s ease;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  transform: rotate(-2deg);
+}
+
+.pdf-btn:nth-of-type(2) {
+  background: #E6F3FF; /* 연한 파랑 스티커 */
+  transform: rotate(1deg);
 }
 
 .pdf-btn:hover {
-  background: #FBE6CF;
-  border-color: #F6B26B;
-  color: var(--text-dark);
-  transform: scale(1.05);
-  box-shadow: 0 2px 4px rgba(242, 169, 80, 0.2);
+  background: #FFF59D;
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+  text-decoration: none;
+}
+
+.pdf-btn:nth-of-type(2):hover {
+  background: #BBDEFB;
 }
 
 #cover {
-  padding: 80px 0;
+  padding: calc(var(--line-height) * 2) 0; /* 62px */
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
+  gap: 31px;
 }
 
 .cover-content {
@@ -527,13 +692,14 @@ p {
 
 .gallery-cta {
   font-weight: 600;
-  color: #497174;
+  color: #9B6B9E; /* 보라 펜 */
   text-decoration: none;
   font-size: 0.95rem;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
 }
 
 .gallery-cta:hover {
-  color: #1A2528;
+  color: #7A4F7D;
   text-decoration: underline;
 }
 
@@ -600,26 +766,35 @@ p {
 }
 
 .social-icons {
-  margin: 8px 0 16px;
+  margin: 0;
+  height: var(--line-height);
+  display: flex;
+  align-items: center;
 }
 
 .social-icons .icon {
   display: inline-flex;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: auto;
+  height: auto;
+  border-radius: 0;
   align-items: center;
   justify-content: center;
-  color: #497174;
+  color: var(--text-secondary);
   text-decoration: none;
-  margin-right: 10px;
-  font-size: 14px;
-  transition: all 0.3s ease;
+  margin-right: 16px;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
   position: relative;
 }
 
+/* 각 아이콘 다른 펜 색상 */
+.social-icons .icon:nth-child(1) { color: #E07B53; } /* CV - 주황 */
+.social-icons .icon:nth-child(2) { color: #5B8A72; } /* GitHub - 초록 */
+.social-icons .icon:nth-child(3) { color: #6B7FD7; } /* Scholar - 파랑 */
+.social-icons .icon:nth-child(4) { color: #9B6B9E; } /* Instagram - 보라 */
+
 .social-icons .icon:hover {
-  color: #D6E4E5;
+  opacity: 0.7;
   transform: none;
   box-shadow: none;
 }
@@ -634,61 +809,47 @@ p {
 }
 
 .more-btn {
-  margin-top: 8px;
-  padding: 8px 16px;
-  border: 2px solid var(--primary-green);
-  background: var(--primary-yellow);
-  color: var(--text-dark);
-  border-radius: 8px;
+  margin-top: var(--line-height);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #6B7FD7; /* 파란 펜 */
+  border-radius: 0;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  font-family: "KG Primary Penmanship", "NanumSquare", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
 }
 
 .gallery-cta-btn {
-  border-color: #F28F38;
-  color: #F28F38;
-  background: rgba(242, 143, 56, 0.08);
-  margin-bottom: 16px;
+  color: #E07B53; /* 주황 펜 */
+  margin-bottom: var(--line-height);
 }
 
 .gallery-cta-btn:hover {
-  border-color: #F28F38;
-  background: #F28F38;
-  color: #fff;
-}
-
-.more-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(242, 169, 80, 0.1), transparent);
-  transition: left 0.5s ease;
+  color: #C25A35;
+  text-decoration: underline;
 }
 
 .more-btn:hover {
-  background: var(--accent-orange);
-  border-color: var(--dark-orange);
-  color: var(--text-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(242, 169, 80, 0.4);
-}
-
-.more-btn:hover::before {
-  left: 100%;
+  background: transparent;
+  border-color: transparent;
+  color: #4A5FC0;
+  transform: none;
+  box-shadow: none;
+  text-decoration: underline;
 }
 
 .more-btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(242, 169, 80, 0.3);
+  transform: none;
+  box-shadow: none;
 }
 
 .home-btn {
@@ -825,14 +986,19 @@ p {
 }
 
 @media (max-width: 768px) {
+  /* 모바일에서 펀치 구멍 숨김 */
+  body::before {
+    display: none;
+  }
+
   .sidebar {
     display: none; /* 모바일에서 사이드바 완전히 숨김 */
   }
 
   .content {
-    margin-left: 0; /* 모바일에서 왼쪽 마진 제거 */
-    padding: 20px; /* 모바일에 맞는 패딩 */
-    padding-bottom: 80px; /* 하단 네비게이션 공간 확보 */
+    margin-left: 0;
+    padding: 31px 20px; /* 상단 패딩을 줄 간격에 맞춤 */
+    padding-bottom: 93px; /* 하단 네비게이션 공간 확보 (31px * 3) */
     width: 100%;
   }
 
