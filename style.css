@@ -624,6 +624,7 @@ p:last-child {
 #talks li {
   margin-bottom: var(--line-height);
   padding-bottom: 0;
+  font-size: 0.9rem;
 }
 
 #talks li:last-child {
@@ -672,20 +673,6 @@ p:last-child {
 .paper-venue {
   font-size: 0.9em;
   line-height: var(--line-height);
-}
-
-/* talks section */
-#talks ul {
-  margin-top: var(--line-height);
-}
-
-#talks li {
-  margin-bottom: var(--line-height);
-  padding-bottom: 0;
-}
-
-#talks li:last-child {
-  margin-bottom: 0;
 }
 
 .pdf-toggle {
