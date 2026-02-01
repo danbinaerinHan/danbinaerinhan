@@ -102,6 +102,12 @@
     return element.closest('a, button, .more-btn, .gallery-cta, .gallery-card, .gallery-cta-btn, input, select, textarea, .sidebar, .mobile-nav');
   }
 
+  // Research 섹션 내부인지 확인
+  function isInResearchSection(element) {
+    if (!element) return false;
+    return element.closest('#research') !== null;
+  }
+
   function startDrawing(e) {
     const element = document.elementFromPoint(e.clientX, e.clientY);
 
@@ -112,8 +118,14 @@
       return;
     }
 
-    // 텍스트 요소 위에서는 하이라이트 모드
+    // 텍스트 요소 위에서는 하이라이트 모드 (Research 섹션 제외)
     if (isTextElement(element)) {
+      if (isInResearchSection(element)) {
+        // Research 섹션에서는 하이라이트 비활성화, 기본 선택만 허용
+        isHighlighting = false;
+        isDrawing = false;
+        return;
+      }
       isHighlighting = true;
       isDrawing = false;
       if (highlightFadeTimeout) {

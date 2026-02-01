@@ -179,6 +179,59 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ========================================
+  // 스크롤 진행 표시바
+  // ========================================
+  const scrollProgress = document.querySelector('.scroll-progress');
+  if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = scrollPercent + '%';
+    });
+  }
+
+  // ========================================
+  // Back to Top 버튼
+  // ========================================
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ========================================
+  // 섹션 fade-in 애니메이션 (Intersection Observer)
+  // ========================================
+  const contentSections = document.querySelectorAll('.content section');
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  contentSections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+
   // Menu item hover effect
   const menuItems = document.querySelectorAll('.menu-item');
   menuItems.forEach(item => {
