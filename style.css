@@ -20,15 +20,15 @@
 
 
 :root {
-  --primary-bg: #fffffe;
-  --primary-green: #9E978E;
-  --primary-yellow: transparent;
-  --accent-orange: #D6E4E5;
-  --dark-orange: #497174;
-  --text-dark: #1A2528; /* 더 진한 네이비 */
-  --text-secondary: #5C6470; /* 부드러운 회색 */
-  --warm-brown: #ffca74; /* 따뜻한 토프 */
-  --cream-bg: #FEFEFE;
+  --primary-bg: #f8f9fc;
+  --primary-navy: #2C3E50;
+  --primary-blue: #34495E;
+  --accent-blue: #5D6D7E;
+  --dark-navy: #1A252F;
+  --text-dark: #1C2833;
+  --text-secondary: #566573;
+  --highlight-blue: #AED6F1;
+  --cream-bg: #F4F6F7;
   --line-height: 31px; /* 노트 줄 간격 */
 }
 
@@ -55,17 +55,17 @@ p, span, h1, h2, h3, h4, h5, h6, li, strong, em, b, i, label, .edu-detail, .pape
 
 body {
   font-family: "Handlee", "MaruBuri", "NanumSquare", sans-serif;
-  background-color: #fefefc;
+  background-color: #faf9f7;
   background-image:
-    /* 종이 질감 노이즈 */
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
-    /* 노트 가로줄 */
+    /* 종이 질감 노이즈 - 은은하게 */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
+    /* 노트 가로줄 - 남색 계열 */
     repeating-linear-gradient(
       to bottom,
       transparent 0px,
       transparent 30px,
-      rgba(167, 196, 178, 0.25) 30px,
-      rgba(167, 196, 178, 0.25) 31px
+      rgba(93, 109, 126, 0.2) 30px,
+      rgba(93, 109, 126, 0.2) 31px
     );
   background-blend-mode: overlay, normal;
   margin: 0;
@@ -83,7 +83,7 @@ body::before {
   top: 0;
   bottom: 0;
   width: 30px;
-  background-image: radial-gradient(circle at center, rgba(180, 180, 180, 0.45) 6px, transparent 6px);
+  background-image: radial-gradient(circle at center, rgba(93, 109, 126, 0.35) 6px, transparent 6px);
   background-size: 30px 93px;
   background-position: center 46px;
   pointer-events: none;
@@ -94,6 +94,14 @@ body::before {
 body.lang-ko {
   font-family: "Nanum Pen Script", "NanumSquare", cursive;
   font-size: 1.1rem;
+}
+
+/* 한글 페이지 사이드바 글씨 크기 */
+body.lang-ko .sidebar a {
+  font-family: "MaruBuri", "Gowun Batang", serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
 }
 
 img {
@@ -139,7 +147,7 @@ body.lang-ko .lang-en {
 .lang-switch a:hover,
 .lang-switch button:hover {
   background: transparent;
-  color: #6B7FD7; /* 파란 펜 */
+  color: #2C3E50;
   border-color: transparent;
   transform: none;
   box-shadow: none;
@@ -153,7 +161,7 @@ body.lang-ko .lang-en {
   display: flex;
 }
 
-/* 노트 바깥 영역 (사이드탭 왼쪽) */
+/* 노트 바깥 영역 (사이드탭 왼쪽) - 짙은 남색 종이 톤 */
 body::after {
   content: '';
   position: fixed;
@@ -161,7 +169,7 @@ body::after {
   top: 0;
   bottom: 0;
   width: 50px;
-  background: #e8e4dc;
+  background: #3D4F5F;
   z-index: 1;
 }
 
@@ -190,58 +198,114 @@ body::after {
   display: none;
 }
 
-/* 왼쪽 사이드 탭 스타일 - 노트 끝자락에 붙은 인덱스 */
+/* 왼쪽 사이드 탭 스타일 - 현실적인 종이 인덱스 탭 */
 .sidebar a {
-  padding: 10px 6px;
-  color: var(--text-dark);
+  padding: 14px 7px;
+  color: #3D3D3D;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.7rem;
-  font-family: "Handlee", "MaruBuri", "NanumSquare", sans-serif;
+  font-size: 0.6rem;
+  font-family: "Handlee", "Nanum Pen Script", cursive;
   transition: all 0.2s ease;
-  border: none;
   position: relative;
   cursor: pointer;
   margin: 0;
   text-shadow: none;
-  border-radius: 6px 0 0 6px;
-  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 3px 0 0 3px;
   transform-origin: right center;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   letter-spacing: 1px;
+  /* 종이 질감 - 미세한 그라데이션으로 입체감 */
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.03) 0%,
+      transparent 3px,
+      transparent 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.1) 30%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.02) 100%
+    );
+  /* 현실적인 그림자 - 종이가 살짝 들린 느낌 */
+  box-shadow:
+    -1px 0 0 rgba(0, 0, 0, 0.04),
+    -2px 1px 2px rgba(0, 0, 0, 0.08),
+    -3px 2px 4px rgba(0, 0, 0, 0.05);
+  /* 종이 가장자리 */
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-right: none;
 }
 
-/* 각 탭 다른 색상 - 차분한 연구자 톤 */
+/* 각 탭 다른 색상 - 실제 인덱스 탭처럼 */
 .sidebar a:nth-of-type(1) { /* News */
-  background: #E8DFD0;
+  background-color: #EDE6D6;
 }
 .sidebar a:nth-of-type(2) { /* Research */
-  background: #D4E2DC;
+  background-color: #D6E5DE;
 }
 .sidebar a:nth-of-type(3) { /* Education */
-  background: #D6DEE8;
+  background-color: #DAE2EC;
 }
 .sidebar a:nth-of-type(4) { /* Talks */
-  background: #E0D8E4;
+  background-color: #E4DCEB;
 }
-.sidebar a:nth-of-type(5) { /* Gallery */
-  background: #E8D8DC;
+.sidebar a:nth-of-type(5) { /* Project */
+  background-color: #DCE8E0;
+}
+.sidebar a:nth-of-type(6) { /* Gallery */
+  background-color: #EBDCE0;
 }
 
+/* 탭 왼쪽 가장자리 - 잘린 종이 느낌 */
 .sidebar a::before {
-  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  border-radius: 3px 0 0 3px;
+}
+
+/* 탭 사이 미세한 구분 */
+.sidebar a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .sidebar a:hover {
-  transform: translateX(8px);
-  box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(5px);
+  box-shadow:
+    -2px 1px 3px rgba(0, 0, 0, 0.1),
+    -4px 2px 6px rgba(0, 0, 0, 0.06);
+  border-left-color: rgba(0, 0, 0, 0.08);
 }
 
 .sidebar a.active {
-  transform: translateX(12px);
-  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.18);
+  transform: translateX(8px);
+  box-shadow:
+    -2px 1px 4px rgba(0, 0, 0, 0.12),
+    -5px 3px 8px rgba(0, 0, 0, 0.08);
   z-index: 10;
+  border-left-color: rgba(0, 0, 0, 0.1);
 }
 
 .sidebar a.active::after {
@@ -290,7 +354,7 @@ nav .sidebar .menu-item:hover,
 .content {
   margin-left: 110px;
   margin-right: 40px;
-  padding: 62px 40px 40px;
+  padding: 93px 40px 40px; /* 상단 여백 증가: 62px → 93px (31px * 3) */
   width: calc(100vw - 190px);
   max-width: none;
   background: transparent;
@@ -337,21 +401,21 @@ nav .sidebar .menu-item:hover,
   opacity: 0.85;
 }
 
-/* 다양한 펜 색상 효과 */
+/* 다양한 펜 색상 효과 - 남색 계열 */
 .keyword:nth-child(1) {
-  color: #E07B53; /* 주황/빨강 펜 */
+  color: #2874A6; /* 진한 파랑 */
 }
 
 .keyword:nth-child(2) {
-  color: #5B8A72; /* 초록 펜 */
+  color: #1A5276; /* 네이비 */
 }
 
 .keyword:nth-child(3) {
-  color: #6B7FD7; /* 파랑 펜 */
+  color: #5B7FA3; /* 중간 파랑 */
 }
 
 .keyword:nth-child(4) {
-  color: #9B6B9E; /* 보라 펜 */
+  color: #4A708B; /* 스틸 블루 */
 }
 
 .section {
@@ -371,18 +435,18 @@ nav .sidebar .menu-item:hover,
 
 h1 {
   margin: 0;
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #444;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1C2833;
   text-align: left;
-  letter-spacing: 0.01em;
-  font-family: "Handlee", "MaruBuri", "NanumSquare", sans-serif;
-  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-family: "Merriweather", "Gowun Batang", Georgia, serif;
+  line-height: 1.3;
   position: relative;
   background: linear-gradient(
     180deg,
     transparent 65%,
-    rgba(220, 210, 190, 0.5) 65%
+    rgba(174, 214, 241, 0.4) 65%
   );
   padding: 0 4px;
 }
@@ -405,49 +469,50 @@ h2 {
   margin-bottom: 0;
   color: var(--text-dark);
   text-align: left;
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   border: none;
   display: inline-block;
-  letter-spacing: 0.01em;
-  font-family: "Handlee", "MaruBuri", "NanumSquare", sans-serif;
+  letter-spacing: -0.01em;
+  font-family: "Merriweather", "Gowun Batang", Georgia, serif;
   line-height: var(--line-height);
   position: relative;
 }
 
-/* 각 섹션별 색상 + 하이라이트 - 차분한 연구자 톤 */
+/* 각 섹션별 색상 + 하이라이트 - 남색 계열 톤 */
 #news h2 {
   margin-top: 0;
-  color: #6B5A45;
-  background: linear-gradient(180deg, transparent 60%, #E8DFD0 60%);
+  color: #1A5276;
+  background: linear-gradient(180deg, transparent 60%, #D5E8F7 60%);
 }
 
 #research h2 {
-  color: #4A6B5A;
-  background: linear-gradient(180deg, transparent 60%, #D4E2DC 60%);
+  color: #21618C;
+  background: linear-gradient(180deg, transparent 60%, #D4E2EC 60%);
 }
 
 #education h2 {
-  color: #4A5A6B;
-  background: linear-gradient(180deg, transparent 60%, #D6DEE8 60%);
+  color: #2C3E50;
+  background: linear-gradient(180deg, transparent 60%, #E0E6ED 60%);
 }
 
 #talks h2 {
-  color: #5A4A5E;
-  background: linear-gradient(180deg, transparent 60%, #E0D8E4 60%);
+  color: #34495E;
+  background: linear-gradient(180deg, transparent 60%, #D8DFE9 60%);
 }
 
 #gallery h2 {
-  color: #6B4A55;
-  background: linear-gradient(180deg, transparent 60%, #E8D8DC 60%);
+  color: #2E4053;
+  background: linear-gradient(180deg, transparent 60%, #E2E0EC 60%);
 }
 
 h3 {
   margin-top: var(--line-height);
   margin-bottom: 0;
   line-height: var(--line-height);
-  font-family: "Handlee", "MaruBuri", "NanumSquare", sans-serif;
-  font-size: 1.1rem;
+  font-family: "Merriweather", "Gowun Batang", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-dark);
 }
 
@@ -484,8 +549,8 @@ h3 {
   align-items: center;
   gap: 8px;
   padding: 10px 18px;
-  background: #D8E4DC;
-  color: #4A5A50 !important;
+  background: #D4E2EC;
+  color: #2C3E50 !important;
   font-size: 1rem;
   font-weight: 600;
   font-family: "Handlee", "MaruBuri", "NanumSquare", sans-serif;
@@ -505,9 +570,9 @@ h3 {
 .section-link:hover {
   transform: translateX(4px);
   box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.12);
-  background: #C8D8CC;
+  background: #B8D4E8;
   text-decoration: none;
-  color: #3A4A40 !important;
+  color: #1A252F !important;
 }
 
 .section-link:hover::after {
@@ -699,8 +764,8 @@ p:last-child {
   margin-left: 6px;
   padding: 1px 5px;
   border: none;
-  background: #FFFACD; /* 연한 노랑 스티커 */
-  color: #666;
+  background: #D5E8F7; /* 연한 파랑 스티커 */
+  color: #2C3E50;
   border-radius: 2px;
   font-weight: 600;
   text-decoration: none;
@@ -712,19 +777,19 @@ p:last-child {
 }
 
 .pdf-btn:nth-of-type(2) {
-  background: #E6F3FF; /* 연한 파랑 스티커 */
+  background: #E0E6ED; /* 연한 회색 파랑 스티커 */
   transform: rotate(1deg);
 }
 
 .pdf-btn:hover {
-  background: #FFF59D;
+  background: #AED6F1;
   transform: rotate(0deg) scale(1.05);
   box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
   text-decoration: none;
 }
 
 .pdf-btn:nth-of-type(2):hover {
-  background: #BBDEFB;
+  background: #D4E6F1;
 }
 
 #cover {
@@ -753,23 +818,39 @@ p:last-child {
   transform: rotate(2deg);
 }
 
-/* 테이프 다꾸 효과 - 상단만 */
+/* 빨간 볼 핀 - 침 부분 */
 .cover-image-wrapper::before {
   content: '';
   position: absolute;
-  width: 70px;
-  height: 24px;
+  width: 2px;
+  height: 10px;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, #999 0%, #666 100%);
+  z-index: 9;
+}
+
+/* 빨간 볼 핀 - 볼 부분 */
+.cover-image-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
   top: -10px;
   left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 248, 200, 0.9) 0%,
-    rgba(255, 242, 170, 0.8) 100%
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle at 40% 35%,
+    #ff6b6b 0%,
+    #e53935 50%,
+    #b71c1c 100%
   );
+  border-radius: 50%;
   z-index: 10;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(220, 200, 120, 0.3);
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.25),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .cover-media {
@@ -853,7 +934,7 @@ p:last-child {
   z-index: 10;
 }
 
-/* 테이프 효과 */
+/* 테이프 효과 - 남색 계열 */
 .gallery-card::before {
   content: '';
   position: absolute;
@@ -864,32 +945,32 @@ p:last-child {
   transform: translateX(-50%) rotate(-3deg);
   background: linear-gradient(
     180deg,
-    rgba(255, 248, 200, 0.85) 0%,
-    rgba(255, 242, 170, 0.75) 100%
+    rgba(213, 232, 247, 0.85) 0%,
+    rgba(184, 212, 232, 0.75) 100%
   );
   z-index: 10;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(220, 200, 120, 0.25);
+  border: 1px solid rgba(93, 109, 126, 0.2);
 }
 
-/* 다양한 테이프 색상 */
+/* 다양한 테이프 색상 - 남색 계열 */
 .gallery-card:nth-child(3n+2)::before {
   background: linear-gradient(
     180deg,
-    rgba(200, 230, 255, 0.85) 0%,
-    rgba(180, 215, 255, 0.75) 100%
+    rgba(224, 230, 237, 0.85) 0%,
+    rgba(212, 226, 236, 0.75) 100%
   );
-  border-color: rgba(150, 180, 220, 0.25);
+  border-color: rgba(93, 109, 126, 0.2);
   transform: translateX(-50%) rotate(2deg);
 }
 
 .gallery-card:nth-child(3n+3)::before {
   background: linear-gradient(
     180deg,
-    rgba(255, 210, 220, 0.85) 0%,
-    rgba(255, 190, 205, 0.75) 100%
+    rgba(226, 224, 236, 0.85) 0%,
+    rgba(212, 210, 224, 0.75) 100%
   );
-  border-color: rgba(220, 160, 180, 0.25);
+  border-color: rgba(93, 109, 126, 0.2);
   transform: translateX(-50%) rotate(-1deg);
 }
 
@@ -928,7 +1009,7 @@ p:last-child {
   display: inline-block;
   margin-top: 12px;
   text-decoration: none;
-  color: #497174;
+  color: #2C3E50;
   font-weight: 600;
 }
 
@@ -965,11 +1046,11 @@ p:last-child {
   position: relative;
 }
 
-/* 각 아이콘 다른 펜 색상 */
-.social-icons .icon:nth-child(1) { color: #E07B53; } /* CV - 주황 */
-.social-icons .icon:nth-child(2) { color: #5B8A72; } /* GitHub - 초록 */
-.social-icons .icon:nth-child(3) { color: #6B7FD7; } /* Scholar - 파랑 */
-.social-icons .icon:nth-child(4) { color: #9B6B9E; } /* Instagram - 보라 */
+/* 각 아이콘 다른 펜 색상 - 남색 계열 */
+.social-icons .icon:nth-child(1) { color: #2874A6; } /* CV */
+.social-icons .icon:nth-child(2) { color: #1A5276; } /* GitHub */
+.social-icons .icon:nth-child(3) { color: #21618C; } /* Scholar */
+.social-icons .icon:nth-child(4) { color: #5D6D7E; } /* Instagram */
 
 .social-icons .icon:hover {
   opacity: 0.7;
@@ -991,7 +1072,7 @@ p:last-child {
   padding: 0;
   border: none;
   background: transparent;
-  color: #6B7FD7; /* 파란 펜 */
+  color: #6B7FD7;
   border-radius: 0;
   font-weight: 600;
   cursor: pointer;
@@ -1243,7 +1324,7 @@ p:last-child {
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--primary-green);
+    background: #2C3E50;
     padding: 8px 0;
     justify-content: space-around;
     align-items: center;
@@ -1256,7 +1337,7 @@ p:last-child {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: var(--cream-bg);
+    color: #F4F6F7;
     font-size: 0.65rem;
     font-weight: 600;
     padding: 4px 8px;
@@ -1271,13 +1352,13 @@ p:last-child {
 
   .mobile-nav a:hover,
   .mobile-nav a.active {
-    background: rgba(214, 228, 229, 0.3);
-    color: #D6E4E5;
+    background: rgba(174, 214, 241, 0.3);
+    color: #AED6F1;
   }
 
   .mobile-nav a.active {
-    background: #D6E4E5;
-    color: #497174;
+    background: #AED6F1;
+    color: #1A252F;
   }
 
   /* 모바일에서 언어 전환 버튼 위치 조정 */
