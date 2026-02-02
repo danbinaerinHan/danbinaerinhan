@@ -74,33 +74,19 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* 펀치 구멍 */
+/* 노트 바깥 영역 - 남색 배경 + 노트 경계 그림자 */
 body::before {
-  content: '';
-  position: fixed;
-  left: 83px;
-  top: 0;
-  bottom: 0;
-  width: 30px;
-  background-image: radial-gradient(circle at center, #8A9BAA 6px, transparent 6px);
-  background-size: 30px 93px;
-  background-position: center 46px;
-  pointer-events: none;
-  z-index: 5;
-}
-
-/* 노트 바깥 영역 - 남색 배경 */
-body::after {
   content: '';
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 77px;
+  width: 78px;
   background:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"),
     linear-gradient(180deg, #3D4F5F 0%, #3A4B58 100%);
   background-blend-mode: overlay, normal;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
   z-index: 1;
 }
 
@@ -254,7 +240,7 @@ body.lang-ko .lang-en { display: none; }
   margin: 0;
   border-radius: 8px 0 0 8px;
   background: linear-gradient(135deg, #F5F3F0 0%, #E8E6E2 100%);
-  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1),
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08),
               inset 1px 1px 2px rgba(255, 255, 255, 0.5);
   border: none;
   border-right: 2px solid #D5D1CC;
@@ -284,9 +270,8 @@ body.lang-ko .lang-en { display: none; }
 
 .sidebar a:hover {
   background: linear-gradient(135deg, #FFFEFA 0%, #F0EDE8 100%);
-  box-shadow: -3px 2px 6px rgba(0, 0, 0, 0.15),
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
               inset 1px 1px 2px rgba(255, 255, 255, 0.6);
-  transform: translateX(3px);
 }
 
 .sidebar a:hover i {
@@ -295,9 +280,8 @@ body.lang-ko .lang-en { display: none; }
 
 .sidebar a.active {
   background: linear-gradient(135deg, #FFFEFA 0%, #FAF8F5 100%);
-  box-shadow: -3px 2px 8px rgba(0, 0, 0, 0.18),
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
               inset 1px 1px 3px rgba(255, 255, 255, 0.7);
-  transform: translateX(5px);
   z-index: 10;
   border-right-color: #faf9f7;
 }
@@ -1329,8 +1313,20 @@ li:last-child {
    반응형 - 모바일
 ======================================== */
 @media (max-width: 768px) {
-  body::before,
-  body::after {
+  /* 모바일에서 SVG 노이즈 제거, 깔끔한 노트 배경만 */
+  body {
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 30px,
+        rgba(93, 109, 126, 0.12) 30px,
+        rgba(93, 109, 126, 0.12) 31px
+      );
+    background-blend-mode: normal;
+  }
+
+  body::before {
     display: none;
   }
 
