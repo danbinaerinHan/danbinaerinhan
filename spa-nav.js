@@ -144,11 +144,17 @@
     }
 
     // Not cached yet — fetch on demand (no full reload)
-    fetchAndCache(pageName).then(function (result) {
-      if (result) {
-        applyContent(pageName, result, pushState);
-      }
-    });
+    fetchAndCache(pageName)
+      .then(function (result) {
+        if (result) {
+          applyContent(pageName, result, pushState);
+        } else {
+          window.location.href = pageName;
+        }
+      })
+      .catch(function () {
+        window.location.href = pageName;
+      });
   }
 
   // Intercept tab clicks
