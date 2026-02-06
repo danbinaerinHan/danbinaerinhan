@@ -18,21 +18,9 @@
   // Pre-fetch and cache all pages on load
   function preloadAll() {
     NAV_PAGES.forEach(function (pageName) {
-      fetch(pageName)
-        .then(function (r) { return r.text(); })
-        .then(function (html) {
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(html, 'text/html');
-          var content = doc.querySelector('.page-content');
-          var title = doc.querySelector('title');
-          if (content) {
-            cache[pageName] = {
-              content: content.innerHTML,
-              title: title ? title.textContent : ''
-            };
-          }
-        })
-        .catch(function () {});
+      if (!cache[pageName]) {
+        fetchAndCache(pageName).catch(function () {});
+      }
     });
   }
 
@@ -104,22 +92,12 @@
     }
   }
 
-  function swapContent(pageName, pushState) {
-    var cached = cache[pageName];
-    if (!cached) {
-      // Not cached yet — full reload fallback
-      window.location.href = pageName;
-      return;
-    }
-
-    // Swap content instantly from cache
+  function applyContent(pageName, cached, pushState) {
     var currentContent = document.querySelector('.page-content');
     currentContent.innerHTML = cached.content;
 
-    // Update title
     if (cached.title) document.title = cached.title;
 
-    // Update active tab
     document.querySelectorAll('.notebook-tab').forEach(function (tab) {
       var tabHref = tab.getAttribute('href');
       if (tabHref === pageName) {
@@ -129,18 +107,48 @@
       }
     });
 
-    // Scroll to top
     window.scrollTo(0, 0);
     var notebookPage = document.querySelector('.notebook-page');
     if (notebookPage) notebookPage.scrollTop = 0;
 
-    // Push state
     if (pushState) {
       history.pushState({ page: pageName }, '', pageName);
     }
 
-    // Re-initialize page scripts
     initPageScripts(pageName);
+  }
+
+  function fetchAndCache(pageName) {
+    return fetch(pageName)
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var content = doc.querySelector('.page-content');
+        var title = doc.querySelector('title');
+        if (content) {
+          cache[pageName] = {
+            content: content.innerHTML,
+            title: title ? title.textContent : ''
+          };
+        }
+        return cache[pageName];
+      });
+  }
+
+  function swapContent(pageName, pushState) {
+    var cached = cache[pageName];
+    if (cached) {
+      applyContent(pageName, cached, pushState);
+      return;
+    }
+
+    // Not cached yet — fetch on demand (no full reload)
+    fetchAndCache(pageName).then(function (result) {
+      if (result) {
+        applyContent(pageName, result, pushState);
+      }
+    });
   }
 
   // Intercept tab clicks
