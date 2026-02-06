@@ -31,14 +31,14 @@ function applySceneTheme(key) {
 // ═══════════════════════════════════════════════════
 SCENES.window = {
   name: '한지',
-  bg: null, clouds: [], motes: [], nodes: [],
+  bg: null,
 
   init: function(w, h) {
     if (this.bg) this.bg.remove();
     this.bg = createGraphics(w, h);
     var g = this.bg;
 
-    // 한지 base — warm off-white, slightly uneven
+    // 한지 base — warm off-white gradient
     for (var y = 0; y < h; y++) {
       var t = y / h;
       g.stroke(lerp(248, 240, t), lerp(244, 236, t), lerp(238, 228, t));
@@ -54,14 +54,14 @@ SCENES.window = {
       g.ellipse(px, py, pr);
     }
 
-    // 수묵 번짐 — ink wash patches (muted gray/jade, NOT gold)
+    // 수묵 번짐 — ink wash patches
     g.noStroke();
     var inkWashes = [
-      { col: [180, 178, 172], a: 12 },  // 먹색 warm gray
-      { col: [185, 195, 185], a: 10 },  // 옥색 jade gray
-      { col: [195, 190, 182], a: 11 },  // 회갈 gray-brown
-      { col: [175, 182, 178], a: 9 },   // 청회 blue-gray
-      { col: [200, 195, 188], a: 10 }   // 미색 unbleached
+      { col: [180, 178, 172], a: 12 },
+      { col: [185, 195, 185], a: 10 },
+      { col: [195, 190, 182], a: 11 },
+      { col: [175, 182, 178], a: 9 },
+      { col: [200, 195, 188], a: 10 }
     ];
     for (var i = 0; i < 6; i++) {
       var ws = inkWashes[floor(random(inkWashes.length))];
@@ -73,127 +73,10 @@ SCENES.window = {
         g.ellipse(wx + random(-25, 25), wy + random(-15, 15), wr * (1 + l * 0.35), wr * (0.55 + l * 0.2));
       }
     }
-
-    // Floating ink clouds (animated, replaces shiny orbs)
-    this.clouds = [];
-    var cloudCols = [
-      [175, 172, 165],  // warm ink
-      [182, 190, 182],  // jade mist
-      [190, 185, 178],  // stone
-      [178, 175, 170],  // ash
-      [188, 192, 185]   // celadon hint
-    ];
-    for (var i = 0; i < 5; i++) {
-      this.clouds.push({
-        x: random(w * 0.05, w * 0.95),
-        y: random(h * 0.1, h * 0.9),
-        r: random(120, 250),
-        col: cloudCols[floor(random(cloudCols.length))],
-        vx: random(-0.08, 0.08),
-        vy: random(-0.04, 0.04),
-        phase: random(TWO_PI)
-      });
-    }
-
-    // Dust motes — subdued, no twinkle
-    this.motes = [];
-    for (var i = 0; i < 30; i++) {
-      this.motes.push({
-        x: random(w), y: random(h),
-        r: random(1, 2.2),
-        vx: random(-0.12, 0.12),
-        vy: random(-0.1, 0.04),
-        phase: random(TWO_PI)
-      });
-    }
-
-    // Network whisper nodes
-    this.nodes = [];
-    for (var i = 0; i < 15; i++) {
-      this.nodes.push({
-        x: random(w), y: random(h),
-        vx: random(-0.1, 0.1),
-        vy: random(-0.1, 0.1)
-      });
-    }
   },
 
   draw: function(w, h) {
     image(this.bg, 0, 0);
-
-    // ── Ink clouds — soft matte wash, drifting ──
-    noStroke();
-    for (var i = 0; i < this.clouds.length; i++) {
-      var c = this.clouds[i];
-      c.x += c.vx;
-      c.y += c.vy;
-      var breath = 1 + sin(frameCount * 0.008 + c.phase) * 0.04;
-      if (c.x < -c.r) c.x = w + c.r;
-      if (c.x > w + c.r) c.x = -c.r;
-      if (c.y < -c.r) c.y = h + c.r;
-      if (c.y > h + c.r) c.y = -c.r;
-
-      // 3-layer diffuse — matte, no glow
-      for (var l = 0; l < 3; l++) {
-        var rr = c.r * breath * (0.5 + l * 0.25);
-        fill(c.col[0], c.col[1], c.col[2], 8 - l * 2);
-        ellipse(c.x, c.y, rr * 2, rr * 1.3);
-      }
-    }
-
-    // ── Motes — quiet floating, no sparkle ──
-    noStroke();
-    for (var i = 0; i < this.motes.length; i++) {
-      var m = this.motes[i];
-      m.x += m.vx + sin(frameCount * 0.006 + m.phase) * 0.05;
-      m.y += m.vy + cos(frameCount * 0.005 + m.phase) * 0.03;
-      // Steady alpha, gentle pulse only
-      var a = 15 + sin(frameCount * 0.015 + m.phase) * 4;
-      fill(175, 172, 165, a);
-      ellipse(m.x, m.y, m.r);
-
-      if (m.x < -5) m.x = w + 5;
-      if (m.x > w + 5) m.x = -5;
-      if (m.y < -5) m.y = h + 5;
-      if (m.y > h + 5) m.y = -5;
-    }
-
-    // ── Network whisper ──
-    for (var i = 0; i < this.nodes.length; i++) {
-      var nd = this.nodes[i];
-      nd.x += nd.vx;
-      nd.y += nd.vy;
-      if (nd.x < 0 || nd.x > w) nd.vx *= -1;
-      if (nd.y < 0 || nd.y > h) nd.vy *= -1;
-      nd.x = constrain(nd.x, 0, w);
-      nd.y = constrain(nd.y, 0, h);
-      noStroke();
-      fill(170, 168, 160, 12);
-      ellipse(nd.x, nd.y, 2.5, 2.5);
-    }
-    for (var i = 0; i < this.nodes.length; i++) {
-      for (var j = i + 1; j < this.nodes.length; j++) {
-        var a = this.nodes[i], b2 = this.nodes[j];
-        var dx = a.x - b2.x, dy = a.y - b2.y;
-        var dist = sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          stroke(170, 168, 160, map(dist, 0, 150, 7, 0));
-          strokeWeight(0.3);
-          line(a.x, a.y, b2.x, b2.y);
-        }
-      }
-    }
-
-    // ── Rain — 단비 ──
-    var rainCount = floor(random(3, 5));
-    for (var i = 0; i < rainCount; i++) {
-      var rx = random(w);
-      var ry = random(h * 0.85);
-      var rLen = random(25, 55);
-      stroke(175, 172, 165, random(8, 16));
-      strokeWeight(0.4);
-      line(rx, ry, rx, ry + rLen);
-    }
   }
 };
 
