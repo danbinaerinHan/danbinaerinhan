@@ -9,6 +9,8 @@ var sceneState = 'idle';
 var pendingScene = null;
 var cachedNotebookRect = null;
 var lastRectUpdate = 0;
+var lastStateChange = 0;
+var lastDrawTime = 0;
 var DARK_SCENES = { city: true };
 var SCENES = {};
 
@@ -441,7 +443,14 @@ SCENES.city = {
 // Scene management
 // ═══════════════════════════════════════════════════
 function switchScene(key) {
-  if (key === currentScene || sceneState !== 'idle') return;
+  if (key === currentScene) return;
+  // Force reset if stuck for more than 3 seconds
+  if (sceneState !== 'idle' && Date.now() - lastStateChange > 3000) {
+    sceneState = 'idle';
+    sceneAlpha = 1;
+  }
+  if (sceneState !== 'idle') return;
+  lastStateChange = Date.now();
   pendingScene = key;
   sceneState = 'fade-out';
 }
@@ -542,31 +551,51 @@ function setup() {
   SCENES[currentScene].init(width, height);
   applySceneTheme(currentScene);
   createSwitcherUI();
+
+  // Safety net: restart draw loop if it stops
+  setInterval(function() {
+    if (Date.now() - lastDrawTime > 2000) {
+      try { loop(); } catch(e) {}
+    }
+  }, 3000);
 }
 
 function draw() {
-  background(252, 249, 242);
-  updateNotebookRect();
+  try {
+    lastDrawTime = Date.now();
+    background(252, 249, 242);
+    updateNotebookRect();
 
-  if (sceneState === 'fade-out') {
-    sceneAlpha = max(0, sceneAlpha - 0.04);
-    if (sceneAlpha <= 0) {
-      currentScene = pendingScene;
-      SCENES[currentScene].init(width, height);
-      applySceneTheme(currentScene);
-      sceneState = 'fade-in';
+    if (sceneState === 'fade-out') {
+      sceneAlpha = max(0, sceneAlpha - 0.04);
+      if (sceneAlpha <= 0) {
+        currentScene = pendingScene;
+        try {
+          SCENES[currentScene].init(width, height);
+        } catch(initErr) {
+          currentScene = 'window';
+          SCENES[currentScene].init(width, height);
+        }
+        applySceneTheme(currentScene);
+        sceneState = 'fade-in';
+        lastStateChange = Date.now();
+      }
+    } else if (sceneState === 'fade-in') {
+      sceneAlpha = min(1, sceneAlpha + 0.04);
+      if (sceneAlpha >= 1) {
+        sceneState = 'idle';
+        lastStateChange = Date.now();
+        saveScene(currentScene);
+      }
     }
-  } else if (sceneState === 'fade-in') {
-    sceneAlpha = min(1, sceneAlpha + 0.04);
-    if (sceneAlpha >= 1) {
-      sceneState = 'idle';
-      saveScene(currentScene);
-    }
+
+    drawingContext.globalAlpha = sceneAlpha;
+    SCENES[currentScene].draw(width, height);
+    drawingContext.globalAlpha = 1;
+  } catch(e) {
+    sceneState = 'idle';
+    sceneAlpha = 1;
   }
-
-  drawingContext.globalAlpha = sceneAlpha;
-  SCENES[currentScene].draw(width, height);
-  drawingContext.globalAlpha = 1;
 }
 
 function windowResized() {
